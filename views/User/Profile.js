@@ -122,7 +122,7 @@ class Profile extends React.Component {
                       },
                       {
                         text: 'Yes',
-                        onPress: () => this.props.navigation.navigate('Launch')
+                        onPress: () => this.props.navigation.navigate('SignIn')
                       }
                     ]
                   )
