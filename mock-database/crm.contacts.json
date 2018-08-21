@@ -1,0 +1,160 @@
+/*=====NOTES=======
+contact_type_id: 1=org, 2=ind. 3=cons..?
+"title_2": null,
+"rm_dept": null,
+"mailing_address_line1": "129 28th St",
+"mailing_address_line2": null,
+"mailing_address_line3": null,
+"mailing_address_city": "Boulder",
+"mailing_address_state": "Colorado",
+"mailing_address_postalcode": "81418",
+"mailing_address_country": "USA",
+"no_contact":
+"no_call":
+"no_mail":
+"no_email":
+"last_viewed":
+"no_email_by_region":
+"no_email_by_country":
+"no_email_by_state":
+"donation_holder":
+"donation_askfor":
+"label_name":
+"matchsavings_holder":
+"duplicate_check_date":
+"duplicate_possible":
+"deceased":
+"master_id":
+"profile_type_id":
+"search_cache":
+"phone_home_fax":
+"email2":
+"phone_business_fax":
+"phone_business_other":
+"date_created": "2018-06-30",
+"date_modified": "2018-07-14",
+"modified_by": "Abbi",
+"created_by": "RJ",
+"parent_id": null,
+"donor_status_id": 0,
+"prefix_id": null,
+"suffix": null,
+"contact_type_id": 2,
+"physical_address_postalcode": "80303",
+"physical_address_line1": "341 Treat Dr.",
+"physical_address_line2": "Apt. #209",
+"physical_address_line3": null,
+==================*/
+
+contactData = {
+  "contacts": [
+    {
+      "contact_id": 432,
+      "is_deleted": 0,
+      "first_name": "Sanora",
+      "middle_name": "Fetcher",
+      "last_name": "Beckwith",
+      "title": "DOG",
+      "title_2": null,
+      "physical_address_city": "Boulder",
+      "physical_address_state": "Colorado",
+      "physical_address_country": "United States",
+      "email1": "sanora.dog@gmail.com",
+      "phone_business_main": "1459876093",
+      "phone_mobile": "9708558721",
+      "web_url": "www.sanorathedog.com",
+      "no_contact": false,
+      "no_call": false,
+      "no_mail": false,
+      "no_email": false,
+    },
+    {
+      "contact_id": 433,
+      "is_deleted": 0,
+      "first_name": "Watson",
+      "last_name": "Morley",
+      "title": "DOG",
+      "title_2": null,
+      "physical_address_city": "Boulder",
+      "physical_address_state": "Colorado",
+      "physical_address_country": "United States",
+      "email1": "watson.dog@gmail.com",
+      "phone_business_main": "6012987029",
+      "web_url": "www.google.com",
+      "no_contact": false,
+      "no_call": false,
+      "no_mail": false,
+      "no_email": false,
+    },
+    {
+      "contact_id": 434,
+      "contact_type_id": 2,
+      "is_deleted": 0,
+      "date_created": "2017-12-20",
+      "date_modified": "2018-01-22",
+      "modified_by": "RJ",
+      "created_by": "Sofie",
+      "parent_id": null,
+      "donor_status_id": 0,
+      "prefix_id": null,
+      "suffix": "Mr",
+      "first_name": "Jefferson",
+      "middle_name": "Squish",
+      "last_name": "Morley",
+      "title": "DOG",
+      "title_2": null,
+      "physical_address_line1": "2932 Ball St.",
+      "physical_address_line2": null,
+      "physical_address_line3": null,
+      "physical_address_city": "Crested Butte",
+      "physical_address_state": "Colorado",
+      "physical_address_postalcode": "80214",
+      "physical_address_country": "United States",
+      "email1": "jefferson.dog@gmail.com",
+      "phone_business_main": "9875297520",
+      "phone_mobile": "83060682946",
+      "phone_home_main": "83060682946",
+      "web_url": "www.jeffersonthedog.com",
+      "no_contact": false,
+      "no_call": false,
+      "no_mail": false,
+      "no_email": false,
+    },
+    {
+      "contact_id": 435,
+      "contact_type_id": 2,
+      "is_deleted": 0,
+      "date_created": "2017-03-19",
+      "date_modified": "2018-07-01",
+      "modified_by": "Abbi",
+      "created_by": "Sofie",
+      "parent_id": null,
+      "donor_status_id": 0,
+      "prefix_id": null,
+      "suffix": "Mrs",
+      "first_name": "Nelli",
+      "middle_name": "Shorty",
+      "last_name": "Beckwith",
+      "title": "DOG",
+      "title_2": null,
+      "physical_address_line1": "893 Sniff Ct.",
+      "physical_address_line2": null,
+      "physical_address_line3": null,
+      "physical_address_city": "Palisade",
+      "physical_address_state": "Colorado",
+      "physical_address_postalcode": "82012",
+      "physical_address_country": "United States",
+      "email1": "nelli.dog@gmail.com",
+      "phone_business_main": "3702836392",
+      "phone_mobile": "9843202161",
+      "phone_home_main": "0234728715",
+      "web_url": "www.nellithedog.com",
+      "no_contact": false,
+      "no_call": false,
+      "no_mail": false,
+      "no_email": false,
+    },
+  ]
+};
+
+export default contactData;

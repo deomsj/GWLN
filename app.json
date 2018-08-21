@@ -1,0 +1,12 @@
+{
+  "expo": {
+    "sdkVersion": "27.0.0",
+    "name": "GWLNTest",
+    "ios": {
+      "bundleIdentifier": "com.rjsofab.GWLNTest"
+    },
+    "android": {
+      "package": "com.rjsofab.GWLNTest"
+    }
+  }
+}
