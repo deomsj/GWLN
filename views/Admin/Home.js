@@ -5,7 +5,7 @@ import {
   createBottomTabNavigator
 } from 'react-navigation';
 import RNPickerSelect from 'react-native-picker-select';
-import Gallery from 'react-native-image-gallery';
+import ImgGallery from '../../components/ImgGallery';
 
 class HomeScreen extends React.Component {
   constructor() {
@@ -34,27 +34,7 @@ class HomeScreen extends React.Component {
     return (
       <View style={styles.container}>
         <View style={styles.galleryContainer}>
-          <Gallery
-            style={styles.gallery}
-            images={[
-              {
-                source: require('../../img/Scroll/Scroll4.jpg'),
-                dimensions: { width: undefined, height: undefined }
-              },
-              {
-                source: require('../../img/Scroll/Scroll2.jpg'),
-                dimensions: { width: undefined, height: undefined }
-              },
-              {
-                source: require('../../img/Scroll/Scroll3.jpg'),
-                dimensions: { width: undefined, height: undefined }
-              },
-              {
-                source: require('../../img/Scroll/Scroll1.jpg'),
-                dimensions: { width: undefined, height: undefined }
-              }
-            ]}
-          />
+          <ImgGallery />
           <Text style={styles.textStyle}>
             Our vision is to provide women with the opportunity and resources to
             make a measurable difference in the lives of each other, in the
@@ -197,4 +177,5 @@ const pickerStyle = StyleSheet.create({
     paddingHorizontal: 125
   }
 });
+
 export default HomeScreen;

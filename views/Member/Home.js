@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyleSheet, Text, View, Button, Platform } from 'react-native';
-import Gallery from 'react-native-image-gallery';
+import ImgGallery from '../../components/ImgGallery';
 
 class MemberHomeScreen extends React.Component {
   render() {
@@ -11,27 +11,7 @@ class MemberHomeScreen extends React.Component {
     return (
       <View style={styles.container}>
         <View style={styles.galleryContainer}>
-          <Gallery
-            style={styles.gallery}
-            images={[
-              {
-                source: require('../../img/Scroll/Scroll4.jpg'),
-                dimensions: { width: undefined, height: undefined }
-              },
-              {
-                source: require('../../img/Scroll/Scroll2.jpg'),
-                dimensions: { width: undefined, height: undefined }
-              },
-              {
-                source: require('../../img/Scroll/Scroll3.jpg'),
-                dimensions: { width: undefined, height: undefined }
-              },
-              {
-                source: require('../../img/Scroll/Scroll1.jpg'),
-                dimensions: { width: undefined, height: undefined }
-              }
-            ]}
-          />
+          <ImgGallery />
           <Text style={styles.textStyle}>
             Our vision is to provide women with the opportunity and resources to
             make a measurable difference in the lives of each other, in the
@@ -132,4 +112,5 @@ const styles = StyleSheet.create({
     })
   }
 });
+
 export default MemberHomeScreen;
