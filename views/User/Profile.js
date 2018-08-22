@@ -1,18 +1,6 @@
 import React from 'react';
-import {
-  StyleSheet,
-  Text,
-  View,
-  Image,
-  Platform,
-  Button,
-  Alert
-} from 'react-native';
-import {
-  createStackNavigator,
-  createBottomTabNavigator
-} from 'react-navigation';
-
+import { StyleSheet, Text, View, Image, Platform, Alert } from 'react-native';
+import { Button } from 'react-native-elements';
 import GWLNicon from '../../img/Gwln_Icon.jpg';
 import contactData from '../../mock-database/crm.contacts.json';
 import '../../global';
@@ -65,10 +53,6 @@ class Profile extends React.Component {
   }
 
   render() {
-    var buttonColors = ['rgba(255, 255, 255, 1)'];
-    if (Platform.OS === 'android') {
-      buttonColors = ['rgba(0, 42, 85, 1)'];
-    }
     const phoneArgs = {
       number: global.currUser.phone_business_main,
       prompt: true
@@ -95,40 +79,34 @@ class Profile extends React.Component {
         </View>
         <View style={styles.optionsContainer}>
           <View style={styles.buttonContainer}>
-            <View style={styles.buttons}>
-              <Button
-                color={buttonColors}
-                title="My Events"
-                onPress={() =>
-                  this.props.navigation.navigate('MyUpcomingEvents')
-                }
-              />
-            </View>
+            <Button
+              title="My Events"
+              onPress={() => this.props.navigation.navigate('MyUpcomingEvents')}
+              buttonStyle={styles.buttons}
+            />
           </View>
           <View style={styles.buttContainer}>
-            <View style={styles.buttons}>
-              <Button
-                color={buttonColors}
-                title="Sign Out"
-                onPress={() =>
-                  Alert.alert(
-                    'Sign Out',
-                    'Are you sure you want to sign out of your account?',
-                    [
-                      {
-                        text: 'Cancel',
-                        onPress: () => console.log('Cancel Pressed'),
-                        style: 'cancel'
-                      },
-                      {
-                        text: 'Yes',
-                        onPress: () => this.props.navigation.navigate('SignIn')
-                      }
-                    ]
-                  )
-                }
-              />
-            </View>
+            <Button
+              buttonStyle={styles.buttons}
+              title="Sign Out"
+              onPress={() =>
+                Alert.alert(
+                  'Sign Out',
+                  'Are you sure you want to sign out of your account?',
+                  [
+                    {
+                      text: 'Cancel',
+                      onPress: () => console.log('Cancel Pressed'),
+                      style: 'cancel'
+                    },
+                    {
+                      text: 'Yes',
+                      onPress: () => this.props.navigation.navigate('SignIn')
+                    }
+                  ]
+                )
+              }
+            />
           </View>
         </View>
       </View>
@@ -181,7 +159,8 @@ const styles = StyleSheet.create({
     justifyContent: 'center'
   },
   buttons: {
-    paddingVertical: 2,
+    height: 40,
+    width: 200,
     backgroundColor: '#002A55',
     ...Platform.select({
       ios: {
@@ -193,8 +172,6 @@ const styles = StyleSheet.create({
     }),
     borderWidth: 1,
     borderRadius: 5,
-    flexDirection: 'column',
-    paddingHorizontal: 40,
-    elevation: 0
+    paddingVertical: 1
   }
 });

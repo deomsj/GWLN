@@ -6,7 +6,7 @@ import { Icon } from 'react-native-elements';
 import GWLNlogo from '../../img/gwln_logo.jpg';
 import Donate from '../All/Donate';
 import Profile from '../User/Profile';
-import UserCalendar from '../User/UserCalendar';
+import EventCalendar from '../All/EventCalendar';
 import AdminHome from './Home';
 import '../../global';
 //import contactData from './../mock-database/crm.contacts.json';
@@ -30,8 +30,8 @@ const Admin = createBottomTabNavigator({
       )
     }
   },
-  UserCalendar: {
-    screen: UserCalendar,
+  EventCalendar: {
+    screen: EventCalendar,
     navigationOptions: {
       title: 'Calendar',
       tabBarIcon: ({ tintColor }) => (
@@ -82,9 +82,9 @@ Admin.navigationOptions = ({ navigation }) => {
       ),
       headerLeft: null
     };
-  } else if (routeName === 'UserCalendar') {
+  } else if (routeName === 'EventCalendar') {
     return {
-      headerLeft: <View />,
+      headerLeft: null,
       headerTitle: (
         <Text
           style={{
@@ -96,8 +96,7 @@ Admin.navigationOptions = ({ navigation }) => {
             color: '#002A55'
           }}
         >
-          {' '}
-          Calendar{' '}
+          Event Calendar
         </Text>
       ),
       headerRight: (
@@ -123,8 +122,7 @@ Admin.navigationOptions = ({ navigation }) => {
             color: '#002A55'
           }}
         >
-          {' '}
-          Help Support Our Cause{' '}
+          Help Support Our Cause
         </Text>
       ),
       headerLeft: null

@@ -5,7 +5,7 @@ import { Icon } from 'react-native-elements';
 
 import GWLNlogo from '../../img/gwln_logo.jpg';
 import Donate from '../All/Donate';
-import GuestCalendar from './Calendar';
+import EventCalendar from '../All/EventCalendar';
 import GuestHome from './Home';
 import '../../global';
 //import contactData from './../mock-database/crm.contacts.json';
@@ -20,8 +20,8 @@ const Guest = createBottomTabNavigator({
       )
     }
   },
-  GuestCalendar: {
-    screen: GuestCalendar,
+  EventCalendar: {
+    screen: EventCalendar,
     navigationOptions: {
       title: 'Calendar',
       tabBarIcon: ({ tintColor }) => (
@@ -48,7 +48,7 @@ Guest.navigationOptions = ({ navigation }) => {
       headerTitle: <Image source={GWLNlogo} style={styles.GWLNlogo} />,
       headerRight: <View />
     };
-  } else if (routeName === 'GuestCalendar') {
+  } else if (routeName === 'EventCalendar') {
     return {
       headerTitle: (
         <Text
@@ -61,8 +61,7 @@ Guest.navigationOptions = ({ navigation }) => {
             color: '#002A55'
           }}
         >
-          {' '}
-          Calendar{' '}
+          Event Calendar
         </Text>
       ),
       headerLeft: null

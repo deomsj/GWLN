@@ -3,20 +3,15 @@ import {
   StyleSheet,
   Text,
   View,
-  Button,
   Image,
   Linking,
   Platform,
   Alert
 } from 'react-native';
-import {
-  createStackNavigator,
-  createBottomTabNavigator
-} from 'react-navigation';
+import { Button } from 'react-native-elements';
 import t from 'tcomb-form-native';
 import GWLNlogo from '../../img/gwln_logo.jpg';
 import WorldCouncilLogo from '../../img/WorldCouncil_logo.png';
-import memberData from '../../mock-database/gwln.members.json';
 
 //Dev Only
 const defaultValue = {
@@ -48,14 +43,7 @@ var options = {
   }
 };
 
-class Signin extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      data: memberData
-    };
-  }
-
+class SignIn extends React.Component {
   resetForm = value => {
     this.setState({ value: null });
   };
@@ -63,9 +51,6 @@ class Signin extends React.Component {
   static navigationOptions = {
     header: null
   };
-
-  // dbeck@wuccu admin
-  //STILL NEED TO ADD DIFFERENTIATION FLAG TO SIGN IN BUTTON
 
   DiscardForm = value => {
     Alert.alert(
@@ -76,9 +61,7 @@ class Signin extends React.Component {
   };
 
   handleSubmit = () => {
-    //STILL NEED TO ADD DIFFERENTIATION FLAG TO SIGN IN BUTTON
     const value = this._form.getValue();
-    console.log('value', value);
     if (value) {
       const url = 'https://cuwomen.org/functions/app.gwln.php';
       fetch(url, {
@@ -118,14 +101,6 @@ class Signin extends React.Component {
   };
 
   render() {
-    var buttonColors = ['rgba(255, 255, 255, 1)'];
-    if (Platform.OS === 'android') {
-      buttonColors = ['rgba(0, 42, 85, 1)'];
-    }
-    var guestColor = ['rgba(0, 42, 85, 1)'];
-    if (Platform.OS === 'android') {
-      guestColors = ['rgba(255, 255, 255, 1)'];
-    }
     return (
       <View style={styles.mainContainer}>
         <View style={styles.logoContainer}>
@@ -140,13 +115,11 @@ class Signin extends React.Component {
           />
         </View>
         <View style={styles.buttonContainer}>
-          <View style={styles.buttons}>
-            <Button
-              title="Sign In"
-              onPress={this.handleSubmit}
-              color={buttonColors}
-            />
-          </View>
+          <Button
+            title="Sign In"
+            onPress={this.handleSubmit}
+            buttonStyle={styles.button}
+          />
           <Text
             style={styles.memberText}
             onPress={() => {
@@ -161,12 +134,11 @@ class Signin extends React.Component {
         <View style={styles.separatorContainer} />
         <Text style={styles.separatorText}>OR</Text>
         <View style={styles.guestContainer}>
-          <Text
-            style={styles.guestButton}
+          <Button
+            title="Continue as Guest"
+            buttonStyle={styles.button}
             onPress={() => this.props.navigation.navigate('Guest')}
-          >
-            Continue as Guest
-          </Text>
+          />
         </View>
         <Image source={WorldCouncilLogo} style={styles.WorldCouncil} />
       </View>
@@ -174,7 +146,7 @@ class Signin extends React.Component {
   }
 }
 
-export default Signin;
+export default SignIn;
 
 const styles = StyleSheet.create({
   mainContainer: {
@@ -191,9 +163,9 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     paddingVertical: 15
   },
-  buttons: {
-    paddingVertical: 1,
-    paddingHorizontal: 40,
+  button: {
+    height: 40,
+    width: 250,
     backgroundColor: '#002A55',
     ...Platform.select({
       ios: {
@@ -204,8 +176,8 @@ const styles = StyleSheet.create({
       }
     }),
     borderWidth: 1,
-    borderRadius: 10,
-    elevation: 0
+    borderRadius: 5,
+    paddingVertical: 1
   },
   memberText: {
     color: 'blue',

@@ -9,10 +9,6 @@ import {
   Platform,
   TouchableOpacity
 } from 'react-native';
-import {
-  createStackNavigator,
-  createBottomTabNavigator
-} from 'react-navigation';
 import { Icon } from 'react-native-elements';
 import { ListItem } from 'react-native-elements';
 import contactData from '../../mock-database/crm.contacts.json';
@@ -59,7 +55,9 @@ class AdminEventDetails extends React.Component {
     })
       .then(res => res.json())
       .then(res => {
-        console.log(res);
+        this.props.navigation.navigate('EventCalendar', {
+          eventsUpdated: 'true'
+        });
       })
       .catch(error => {
         console.log(error);
@@ -87,7 +85,6 @@ class AdminEventDetails extends React.Component {
           containerStyle={{ marginRight: 15, marginTop: 15 }}
           iconStyle={styles.headerIcon}
           type="font-awesome"
-          // color= '#002A55'
           name="trash"
           onPress={navigation.getParam('discard')}
         />
@@ -96,11 +93,7 @@ class AdminEventDetails extends React.Component {
   };
   componentDidMount = value => {
     this.props.navigation.setParams({ discard: this.DiscardForm });
-    this.mounted = true;
   };
-  componentWillUnmount() {
-    this.mounted = false;
-  }
   retrieveEvent = () => {
     const url = 'https://cuwomen.org/functions/app.gwln.php';
     fetch(url, {

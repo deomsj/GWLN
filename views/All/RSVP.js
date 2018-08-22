@@ -3,34 +3,56 @@ import {
   StyleSheet,
   Text,
   View,
-  Button,
   Alert,
   ScrollView,
   Platform
 } from 'react-native';
-import { Icon } from 'react-native-elements';
+import { Button, Icon } from 'react-native-elements';
 import t from 'tcomb-form-native';
-import '../../global';
 
 const Form = t.form.Form;
 
-const NumAttendees = t.struct({
+const guest = t.struct({
+  first_name: t.String,
+  last_name: t.String,
+  email: t.String,
   numGuests: t.Number
 });
 
 var options = {
   fields: {
+    first_name: {
+      label: 'First Name',
+      error: 'Please enter your first name'
+    },
+    last_name: {
+      label: 'Last Name',
+      error: 'Please enter your last name'
+    },
+    email: {
+      label: 'Email',
+      error: 'Please enter your email'
+    },
     numGuests: {
-      label: 'Number of attendees',
+      label: 'Number of Attendees',
       error: 'Please enter the number of attendees'
     }
   }
 };
 
-class memberRSVP extends React.Component {
+class GuestRSVP extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { value: null };
+    const user = global.currUser || {};
+
+    // member_id: global.crm,
+    const value = {
+      first_name: user.first_name || '',
+      last_name: user.last_name || '',
+      email: user.email1 || '',
+      numGuests: 1
+    };
+    this.state = { value };
   }
 
   resetForm = value => {
@@ -44,7 +66,10 @@ class memberRSVP extends React.Component {
         onPress: () => console.log('Cancel Pressed'),
         style: 'cancel'
       },
-      { text: 'Yes', onPress: () => this.resetForm() }
+      {
+        text: 'Yes',
+        onPress: () => this.props.navigation.navigate('EventCalendar')
+      }
     ]);
   };
 
@@ -61,7 +86,7 @@ class memberRSVP extends React.Component {
             color: '#002A55'
           }}
         >
-          Member RSVP
+          Event RSVP
         </Text>
       ),
       headerRight: (
@@ -93,10 +118,9 @@ class memberRSVP extends React.Component {
           code: 'eventRSVP',
           arguments: {
             timeline_event_id: this.props.navigation.state.params.ID,
-            member_id: global.crm,
-            first_name: global.currUser.first_name,
-            last_name: global.currUser.last_name,
-            email: global.currUser.email1,
+            first_name: value.first_name,
+            last_name: value.last_name,
+            email: value.email,
             guests: value.numGuests
           }
         })
@@ -106,42 +130,47 @@ class memberRSVP extends React.Component {
           if (res) {
             console.log(res);
             Alert.alert('Success', 'You are now registered for this event', [
-              { text: 'Dismiss', onPress: this.resetForm }
+              {
+                text: 'Return to Calendar',
+                onPress: () => this.props.navigation.navigate('EventCalendar')
+              }
             ]);
           }
         })
         .catch(error => {
           console.log(error);
-          Alert.alert('Error Occured', 'Please try again', [
-            { text: 'Dismiss', onPress: this.initialState }
+          Alert.alert('Error', 'Invalid information, please try again', [
+            { text: 'Dismiss', onPress: this.resetForm }
           ]);
         });
     }
   };
 
   render() {
-    var buttonColors = ['rgba(255, 255, 255, 1)'];
-    if (Platform.OS === 'android') {
-      buttonColors = ['rgba(0, 42, 85, 1)'];
-    }
     return (
       <View style={styles.container}>
         <ScrollView>
-          <Form ref="form" type={NumAttendees} options={options} />
+          <Form
+            ref="form"
+            style={styles.formContainer}
+            type={guest}
+            options={options}
+            value={this.state.value}
+          />
           <View style={styles.buttonContainer}>
-            <View style={styles.button}>
-              <Button
-                title="RSVP"
-                onPress={this.handleSubmit}
-                color={buttonColors}
-              />
-            </View>
+            <Button
+              title="RSVP"
+              onPress={this.handleSubmit}
+              buttonStyle={styles.button}
+            />
           </View>
         </ScrollView>
       </View>
     );
   }
 }
+
+export default GuestRSVP;
 
 const styles = StyleSheet.create({
   container: {
@@ -155,9 +184,8 @@ const styles = StyleSheet.create({
     color: '#002A55'
   },
   button: {
-    elevation: 0,
-    // padding: 30,
-    paddingHorizontal: 50,
+    height: 40,
+    width: 200,
     backgroundColor: '#002A55',
     ...Platform.select({
       ios: {
@@ -179,4 +207,3 @@ const styles = StyleSheet.create({
     padding: 20
   }
 });
-export default memberRSVP;

@@ -75,7 +75,7 @@ class MyUpcomingEvents extends React.Component {
     </TouchableOpacity>
   );
 
-  makeremoteRequest = () => {
+  makeRemoteRequest = () => {
     const url = 'https://cuwomen.org/functions/app.gwln.php';
     fetch(url, {
       method: 'POST',
@@ -127,12 +127,12 @@ class MyUpcomingEvents extends React.Component {
       });
   };
 
-  componenetWillUnmount() {
+  componentWillUnmount() {
     this.mounted = false;
   }
 
   componentDidMount() {
-    this.makeremoteRequest();
+    this.makeRemoteRequest();
     this.mounted = false;
   }
   render() {

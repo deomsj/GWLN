@@ -3,17 +3,12 @@ import {
   StyleSheet,
   Text,
   View,
-  Button,
   ScrollView,
   Alert,
   Platform
 } from 'react-native';
-import {
-  createStackNavigator,
-  createBottomTabNavigator
-} from 'react-navigation';
+import { Button, Icon } from 'react-native-elements';
 import t from 'tcomb-form-native';
-import { Icon } from 'react-native-elements';
 
 const Form = t.form.Form;
 
@@ -22,6 +17,7 @@ var _ = require('lodash');
 const stylesheet = _.cloneDeep(t.form.Form.stylesheet);
 
 stylesheet.textbox.normal.height = 200;
+stylesheet.textbox.error.height = 200;
 stylesheet.textbox.normal.textAlignVertical = 'top';
 
 const Content = t.struct({
@@ -62,7 +58,7 @@ class NewBlogPost extends React.Component {
         onPress: () => console.log('Cancel Pressed'),
         style: 'cancel'
       },
-      { text: 'Yes', onPress: () => this.resetForm() }
+      { text: 'Yes', onPress: () => this.props.navigation.navigate('Blog') }
     ]);
   };
 
@@ -98,9 +94,26 @@ class NewBlogPost extends React.Component {
   componentDidMount = value => {
     this.props.navigation.setParams({ discard: this.DiscardForm });
   };
+
   handleSubmit = () => {
     const value = this._form.getValue();
-    console.log('value', value);
+    if (value && value.PostTitle && value.Post) {
+      Alert.alert(
+        'Submit Post',
+        'Are you ready to post to the message board?',
+        [
+          {
+            text: 'Cancel',
+            onPress: () => console.log('Cancel Pressed'),
+            style: 'cancel'
+          },
+          { text: 'Yes', onPress: () => this.submit(value) }
+        ]
+      );
+    }
+  };
+
+  submit = () => {
     const url = 'https://cuwomen.org/functions/app.gwln.php';
     fetch(url, {
       method: 'POST',
@@ -127,10 +140,6 @@ class NewBlogPost extends React.Component {
   };
 
   render() {
-    var buttonColors = ['rgba(255, 255, 255, 1)'];
-    if (Platform.OS === 'android') {
-      buttonColors = ['rgba(0, 42, 85, 1)'];
-    }
     return (
       <View style={styles.mainContainer}>
         <ScrollView>
@@ -143,21 +152,8 @@ class NewBlogPost extends React.Component {
             <View style={styles.buttonContainer}>
               <Button
                 title="Submit"
-                color={buttonColors}
-                onPress={() =>
-                  Alert.alert(
-                    'Submit Post',
-                    'Are you ready to post to the message board?',
-                    [
-                      {
-                        text: 'Cancel',
-                        onPress: () => console.log('Cancel Pressed'),
-                        style: 'cancel'
-                      },
-                      { text: 'Yes', onPress: this.handleSubmit }
-                    ]
-                  )
-                }
+                buttonStyle={styles.button}
+                onPress={this.handleSubmit}
               />
             </View>
           </View>
@@ -204,6 +200,22 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderRadius: 5,
     flexDirection: 'column'
+  },
+  button: {
+    height: 40,
+    width: 200,
+    backgroundColor: '#002A55',
+    ...Platform.select({
+      ios: {
+        borderColor: '#002A55'
+      },
+      android: {
+        borderColor: 'white'
+      }
+    }),
+    borderWidth: 1,
+    borderRadius: 5,
+    paddingVertical: 1
   }
 });
 

@@ -14,7 +14,7 @@ import {
 import { Icon } from 'react-native-elements';
 import { ListItem } from 'react-native-elements';
 
-class BlogPostList extends React.Component {
+class Blog extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -68,11 +68,8 @@ class BlogPostList extends React.Component {
     <TouchableOpacity onPress={() => this._onPressItem(item)}>
       <ListItem
         id={item.id}
-        onPressItem={console.log('press')}
-        roundAvatar
         title={item.title}
         subtitle={item.description}
-        //avatar={{ uri: item.picture.thumbnail }}
         containerStyle={{ borderBottomWidth: 0 }}
       />
     </TouchableOpacity>
@@ -120,14 +117,13 @@ class BlogPostList extends React.Component {
     this.props.navigation.navigate('NewBlogPost');
   };
   render() {
-    console.log(this.state.data);
     return (
       <View style={styles.mainContainer}>
         <ScrollView>
           <FlatList
             data={this.state.data}
             renderItem={this._renderItem}
-            keyExtractor={item => String(item.postID)}
+            keyExtractor={item => String(item.post_id)}
             ItemSeparatorComponent={this.renderSeparator}
           />
 
@@ -138,7 +134,7 @@ class BlogPostList extends React.Component {
   }
 }
 
-export default BlogPostList;
+export default Blog;
 
 const styles = StyleSheet.create({
   mainContainer: {

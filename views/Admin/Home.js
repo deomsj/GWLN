@@ -1,9 +1,5 @@
 import React from 'react';
 import { StyleSheet, Text, View, Button, Platform } from 'react-native';
-import {
-  createStackNavigator,
-  createBottomTabNavigator
-} from 'react-navigation';
 import RNPickerSelect from 'react-native-picker-select';
 import ImgGallery from '../../components/ImgGallery';
 
@@ -61,7 +57,7 @@ class HomeScreen extends React.Component {
               <Button
                 color={buttonColors}
                 title="Find an Event"
-                onPress={() => this.props.navigation.navigate('UserCalendar')}
+                onPress={() => this.props.navigation.navigate('EventCalendar')}
               />
             </View>
           </View>
@@ -77,7 +73,7 @@ class HomeScreen extends React.Component {
           <View style={styles.menuContainer}>
             <Text
               style={styles.memberText}
-              onPress={() => this.props.navigation.navigate('BlogPostList')}
+              onPress={() => this.props.navigation.navigate('Blog')}
             >
               Blog
             </Text>

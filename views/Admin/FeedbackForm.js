@@ -3,15 +3,13 @@ import {
   StyleSheet,
   Text,
   View,
-  Button,
   ScrollView,
   Alert,
   Platform
 } from 'react-native';
-
+import { Button } from 'react-native-elements';
 import t from 'tcomb-form-native';
 import { Icon } from 'react-native-elements';
-import moment from 'moment';
 
 const Form = t.form.Form;
 
@@ -99,45 +97,54 @@ class FeedbackForm extends React.Component {
 
   handleSubmit = () => {
     const value = this._form.getValue();
-    console.log('value', value);
     if (value) {
-      const url = 'https://cuwomen.org/functions/app.gwln.php';
-      fetch(url, {
-        method: 'POST',
-        headers: {
-          'X-Token': 'hub46bubg75839jfjsbs8532hs09hurdfy47sbub'
-        },
-        body: JSON.stringify({
-          code: 'sendFeedback',
-          arguments: {
-            feedback: value.Summary,
-            username: global.currUser.username
-          }
-        })
-      })
-        .then(res => res.json())
-        .then(res => {
-          if (res) {
-            console.log(res);
-            this.resetForm({});
-            this.props.navigation.navigate('Admin');
-          } else {
-            console.log('error');
-            this.DiscardForm();
-          }
-        })
-        .catch(error => {
-          console.log(error);
-        });
-      console.log('fetch');
+      Alert.alert(
+        'Submit Feedback',
+        'Are you sure you want to submit feedback?',
+        [
+          {
+            text: 'Cancel',
+            onPress: () => console.log('Cancel Pressed'),
+            style: 'cancel'
+          },
+          { text: 'Yes', onPress: () => this.submit(value) }
+        ]
+      );
     }
   };
 
+  submit = value => {
+    const url = 'https://cuwomen.org/functions/app.gwln.php';
+    fetch(url, {
+      method: 'POST',
+      headers: {
+        'X-Token': 'hub46bubg75839jfjsbs8532hs09hurdfy47sbub'
+      },
+      body: JSON.stringify({
+        code: 'sendFeedback',
+        arguments: {
+          feedback: value.Summary,
+          username: global.currUser.username
+        }
+      })
+    })
+      .then(res => res.json())
+      .then(res => {
+        if (res) {
+          console.log(res);
+          this.resetForm({});
+          this.props.navigation.navigate('Admin');
+        } else {
+          console.log('error');
+          this.DiscardForm();
+        }
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  };
+
   render() {
-    var buttonColors = ['rgba(255, 255, 255, 1)'];
-    if (Platform.OS === 'android') {
-      buttonColors = ['rgba(0, 42, 85, 1)'];
-    }
     return (
       <View style={styles.container}>
         <ScrollView>
@@ -157,26 +164,11 @@ class FeedbackForm extends React.Component {
             {'\n'} {'\u2022'} Dollars or resources donated{' '}
           </Text>
           <View style={styles.buttonContainer}>
-            <View style={styles.button}>
-              <Button
-                title="Submit"
-                onPress={() =>
-                  Alert.alert(
-                    'Submit Feedback',
-                    'Are you sure you want to submit feedback?',
-                    [
-                      {
-                        text: 'Cancel',
-                        onPress: () => console.log('Cancel Pressed'),
-                        style: 'cancel'
-                      },
-                      { text: 'Yes', onPress: this.handleSubmit }
-                    ]
-                  )
-                }
-                color={buttonColors}
-              />
-            </View>
+            <Button
+              title="Submit"
+              onPress={this.handleSubmit}
+              buttonStyle={styles.button}
+            />
           </View>
         </ScrollView>
       </View>
@@ -197,8 +189,8 @@ const styles = StyleSheet.create({
     color: '#002A55'
   },
   button: {
-    elevation: 0,
-    paddingHorizontal: 30,
+    height: 40,
+    width: 200,
     backgroundColor: '#002A55',
     ...Platform.select({
       ios: {

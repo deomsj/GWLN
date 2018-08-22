@@ -9,74 +9,67 @@ import {
 } from 'react-native';
 import ImgGallery from '../../components/ImgGallery';
 
-class GuestHome extends React.Component {
-  constructor() {
-    super();
-    this.inputRefs = {};
+const GuestHome = props => {
+  var buttonColors = ['rgba(255, 255, 255, 1)'];
+  if (Platform.OS === 'android') {
+    buttonColors = ['rgba(0, 42, 85, 1)'];
   }
-
-  render() {
-    var buttonColors = ['rgba(255, 255, 255, 1)'];
-    if (Platform.OS === 'android') {
-      buttonColors = ['rgba(0, 42, 85, 1)'];
-    }
-    return (
-      <View style={styles.container}>
-        <View style={styles.galleryContainer}>
-          <ImgGallery />
-          <Text style={styles.textStyle}>
-            Our vision is to provide women with the opportunity and resources to
-            make a measurable difference in the lives of each other, in the
-            lives of credit union members and in their communities.
-          </Text>
-        </View>
-        <View style={styles.buttonContainer}>
-          <View style={styles.menuContainer}>
-            <View style={styles.button}>
-              <Button
-                color={buttonColors}
-                title="Join the Network"
-                onPress={() => {
-                  Linking.openURL(
-                    'https://www.cuwomen.org/gwln_connect/gwln_new_member'
-                  );
-                }}
-              />
-            </View>
-          </View>
-          <View style={styles.menuContainer}>
-            <View style={styles.button}>
-              <Button
-                color={buttonColors}
-                title="Find an Event"
-                onPress={() => this.props.navigation.navigate('GuestCalendar')}
-              />
-            </View>
-          </View>
-          <View style={styles.menuContainer}>
-            <View style={styles.button}>
-              <Button
-                color={buttonColors}
-                title="Benefits of Membership"
-                onPress={() => {
-                  Linking.openURL(
-                    'https://www.cuwomen.org/gwln_about/gwln_member'
-                  );
-                }}
-              />
-            </View>
-          </View>
-          <Text
-            style={styles.memberText}
-            onPress={() => this.props.navigation.navigate('GuestBlog')}
-          >
-            Blog
-          </Text>
-        </View>
+  return (
+    <View style={styles.container}>
+      <View style={styles.galleryContainer}>
+        <ImgGallery />
+        <Text style={styles.textStyle}>
+          Our vision is to provide women with the opportunity and resources to
+          make a measurable difference in the lives of each other, in the lives
+          of credit union members and in their communities.
+        </Text>
       </View>
-    );
-  }
-}
+      <View style={styles.buttonContainer}>
+        <View style={styles.menuContainer}>
+          <View style={styles.button}>
+            <Button
+              color={buttonColors}
+              title="Join the Network"
+              onPress={() => {
+                Linking.openURL(
+                  'https://www.cuwomen.org/gwln_connect/gwln_new_member'
+                );
+              }}
+            />
+          </View>
+        </View>
+        <View style={styles.menuContainer}>
+          <View style={styles.button}>
+            <Button
+              color={buttonColors}
+              title="Find an Event"
+              onPress={() => props.navigation.navigate('EventCalendar')}
+            />
+          </View>
+        </View>
+        <View style={styles.menuContainer}>
+          <View style={styles.button}>
+            <Button
+              color={buttonColors}
+              title="Benefits of Membership"
+              onPress={() => {
+                Linking.openURL(
+                  'https://www.cuwomen.org/gwln_about/gwln_member'
+                );
+              }}
+            />
+          </View>
+        </View>
+        <Text
+          style={styles.memberText}
+          onPress={() => props.navigation.navigate('Blog')}
+        >
+          Blog
+        </Text>
+      </View>
+    </View>
+  );
+};
 
 const styles = StyleSheet.create({
   container: {

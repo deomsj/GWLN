@@ -1,63 +1,34 @@
 import React from 'react';
-import {
-  StyleSheet,
-  Text,
-  View,
-  Button,
-  ScrollView,
-  Platform
-} from 'react-native';
+import { StyleSheet, Text, View, ScrollView, Platform } from 'react-native';
+import { Button } from 'react-native-elements';
 import HTML from 'react-native-render-html';
-import contactData from '../../mock-database/crm.contacts.json';
+// import  from '../../mock-database/crm.contacts.json';
 import '../../global';
-
-//import EventData from './www_timeline_events.json';
-
-const tmp = {};
-
-const DEFAULT_PROPS = {
-  tagsStyles: {
-    ' ': {
-      fontSize: 16,
-      color: 'gray',
-      paddingHorizontal: 10
-    },
-    p: {
-      fontSize: 16,
-      color: 'gray',
-      paddingHorizontal: 10
-    }
-  }
-};
 
 class EventDetails extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      data: {},
-      memInfo: contactData
+      data: {}
     };
   }
 
-  static navigationOptions = ({ navigation }) => {
-    return {
-      headerTitle: (
-        <Text
-          style={{
-            flex: 1,
-            textAlign: 'center',
-            alignSelf: 'center',
-            fontWeight: 'bold',
-            fontSize: 20,
-            color: '#002A55'
-          }}
-        >
-          Event Details
-        </Text>
-      ),
-      headerRight: <View />
-    };
-  };
+  static navigationOptions = () => ({
+    headerTitle: (
+      <Text
+        style={{
+          flex: 1,
+          textAlign: 'center',
+          alignSelf: 'center',
+          fontWeight: 'bold',
+          fontSize: 20,
+          color: '#002A55'
+        }}
+      >
+        Event Details
+      </Text>
+    )
+  });
 
   retrieveEvent = () => {
     const url = 'https://cuwomen.org/functions/app.gwln.php';
@@ -84,7 +55,6 @@ class EventDetails extends React.Component {
       .catch(error => {
         console.log(error);
       });
-    console.log(tmp);
   };
 
   _test = () => {
@@ -95,79 +65,48 @@ class EventDetails extends React.Component {
       console.log(tmp[0].event_name);
     }
   };
-  _onPress = () => {
-    console.log('rsvp pressed');
-    this._Post_RSVP();
-  };
 
-  _Post_RSVP = () => {
-    let currUser = this.state.memInfo;
-    if (global.currUser != null) {
-      const attendee = {
-        event: this.state.data.timeline_event_id,
-        cmr_id: global.currUser.contact_id
-      };
-      console.log(attendee);
-    } else {
-      const guestAttendee = {
-        event: this.state.data.timeline_event_id,
-        cmr_id: Math.floor(Math.random() * 10000) + 1
-      };
-      console.log(guestAttendee);
-    }
-  };
   _GoToRSVP = () => {
     let ID = this.state.data.timeline_event_id;
+    this.props.navigation.navigate('RSVP', { ID });
   };
 
   componentDidMount() {
     this.retrieveEvent();
   }
   render() {
-    //this._test();
     console.log(this.state.data);
-
-    var buttonColors = ['rgba(255, 255, 255, 1)'];
-    if (Platform.OS === 'android') {
-      buttonColors = ['rgba(0, 42, 85, 1)'];
-    }
-
-    // run query of events on the day that is passed then store the information in an array of objects
-    //() => this._onPress()
-    //<Text style={styles.infoText}> {this.state.data.event_description} </Text>
+    const {
+      event_name,
+      event_month,
+      event_day,
+      event_year,
+      location,
+      event_description
+    } = this.state.data;
     return (
       <View style={styles.container}>
         <ScrollView>
           <View>
             <View style={styles.heading}>
-              <Text style={styles.headingText}>
-                {' '}
-                {this.state.data.event_name}{' '}
-              </Text>
+              <Text style={styles.headingText}> {event_name} </Text>
               <Text style={styles.infoText}>
-                {' '}
-                {this.state.data.event_month}/{this.state.data.event_day}/
-                {this.state.data.event_year}{' '}
+                {event_month}/{event_day}/{event_year}
               </Text>
             </View>
             <View style={styles.info}>
               <Text style={styles.fieldText}>Location:</Text>
-              <Text style={styles.infoText}>
-                {' '}
-                {this.state.data.event_location}{' '}
-              </Text>
+              <Text style={styles.infoText}>{location}</Text>
             </View>
             <View style={styles.info}>
               <Text style={styles.fieldText}>Details:</Text>
-              <HTML html={this.state.data.event_description} />
+              <HTML html={event_description} />
               <View style={styles.buttonContainer}>
-                <View style={styles.button}>
-                  <Button
-                    title="RSVP"
-                    onPress={() => this._GoToRSVP()}
-                    color={buttonColors}
-                  />
-                </View>
+                <Button
+                  title="RSVP"
+                  onPress={this._GoToRSVP}
+                  buttonStyle={styles.button}
+                />
               </View>
             </View>
           </View>
@@ -211,9 +150,8 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10
   },
   button: {
-    elevation: 0,
-    // padding: 30,
-    paddingHorizontal: 50,
+    height: 40,
+    width: 150,
     backgroundColor: '#002A55',
     ...Platform.select({
       ios: {

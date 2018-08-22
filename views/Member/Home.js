@@ -24,7 +24,7 @@ class MemberHomeScreen extends React.Component {
               <Button
                 color={buttonColors}
                 title="Find an Event"
-                onPress={() => this.props.navigation.navigate('UserCalendar')}
+                onPress={() => this.props.navigation.navigate('EventCalendar')}
               />
             </View>
           </View>
@@ -39,7 +39,7 @@ class MemberHomeScreen extends React.Component {
           </View>
           <Text
             style={styles.memberText}
-            onPress={() => this.props.navigation.navigate('BlogPostList')}
+            onPress={() => this.props.navigation.navigate('Blog')}
           >
             Blog
           </Text>
