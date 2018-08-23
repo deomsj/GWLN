@@ -5,7 +5,8 @@ import {
   View,
   Text,
   Alert,
-  Platform
+  Platform,
+  KeyboardAvoidingView
 } from 'react-native';
 import { Button } from 'react-native-elements';
 import t from 'tcomb-form-native';
@@ -116,13 +117,17 @@ class CheckIn extends React.Component {
 
   render() {
     return (
-      <View style={styles.mainContainer}>
+      <KeyboardAvoidingView
+        enabled
+        behavior="padding"
+        style={styles.mainContainer}
+      >
         <View style={styles.radioContainer}>
           <Text style={styles.questionText}>Are you a member of GWLN? </Text>
           <Radio onSelect={this.selectAttendeeType} />
         </View>
         <ScrollView>{this.renderForm(this.state.isMember)}</ScrollView>
-      </View>
+      </KeyboardAvoidingView>
     );
   }
 
@@ -216,7 +221,7 @@ const styles = StyleSheet.create({
   formContainer: {
     backgroundColor: 'white',
     paddingHorizontal: 30,
-    paddingVertical: 10
+    paddingBottom: 50
   },
   textBox: {
     alignSelf: 'center',

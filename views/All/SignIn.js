@@ -86,7 +86,6 @@ class SignIn extends React.Component {
             } else {
               this.props.navigation.navigate('Member');
             }
-
             this.resetForm;
           } else {
             this.DiscardForm();
@@ -95,9 +94,23 @@ class SignIn extends React.Component {
         .catch(error => {
           console.log(error);
         });
-      console.log('fetch');
     }
   };
+
+  clearUserInfo = () => {
+    global.currUser = null;
+  };
+
+  componentDidMount() {
+    this._focusListener = this.props.navigation.addListener(
+      'didFocus',
+      this.clearUserInfo
+    );
+  }
+
+  componentWillUnmount() {
+    this._focusListener.remove();
+  }
 
   render() {
     return (
@@ -138,8 +151,8 @@ class SignIn extends React.Component {
             buttonStyle={styles.button}
             onPress={() => this.props.navigation.navigate('Guest')}
           />
+          <Image source={WorldCouncilLogo} style={styles.WorldCouncil} />
         </View>
-        <Image source={WorldCouncilLogo} style={styles.WorldCouncil} />
       </View>
     );
   }
@@ -189,9 +202,9 @@ const styles = StyleSheet.create({
     flexDirection: 'column'
   },
   logoContainer: {
-    position: 'absolute',
-    top: '5%',
-    alignSelf: 'center'
+    alignSelf: 'center',
+    alignContent: 'center',
+    paddingVertical: 40
   },
   GWLNlogo: {
     resizeMode: 'contain',
@@ -202,16 +215,14 @@ const styles = StyleSheet.create({
   },
   WorldCouncil: {
     resizeMode: 'contain',
-    width: undefined,
-    height: undefined,
     paddingTop: 100,
-    paddingHorizontal: 75,
-    position: 'absolute',
-    bottom: '0%',
-    right: '5%'
+    width: 150
   },
   guestContainer: {
-    alignSelf: 'center'
+    flex: 1,
+    alignSelf: 'center',
+    alignItems: 'center',
+    justifyContent: 'space-between'
   },
   guestButton: {
     paddingHorizontal: 10,

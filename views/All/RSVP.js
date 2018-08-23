@@ -5,7 +5,8 @@ import {
   View,
   Alert,
   ScrollView,
-  Platform
+  Platform,
+  KeyboardAvoidingView
 } from 'react-native';
 import { Button, Icon } from 'react-native-elements';
 import t from 'tcomb-form-native';
@@ -148,7 +149,7 @@ class GuestRSVP extends React.Component {
 
   render() {
     return (
-      <View style={styles.container}>
+      <KeyboardAvoidingView enabled behavior="padding" style={styles.container}>
         <ScrollView>
           <Form
             ref="form"
@@ -165,7 +166,7 @@ class GuestRSVP extends React.Component {
             />
           </View>
         </ScrollView>
-      </View>
+      </KeyboardAvoidingView>
     );
   }
 }
@@ -197,7 +198,8 @@ const styles = StyleSheet.create({
     }),
     borderWidth: 1,
     borderRadius: 5,
-    paddingVertical: 1
+    paddingVertical: 1,
+    marginBottom: 10
   },
   formContainer: {
     padding: 30

@@ -7,10 +7,6 @@ import {
   FlatList,
   TouchableOpacity
 } from 'react-native';
-import {
-  createStackNavigator,
-  createBottomTabNavigator
-} from 'react-navigation';
 import { Icon } from 'react-native-elements';
 import { ListItem } from 'react-native-elements';
 
@@ -21,6 +17,10 @@ class Blog extends React.Component {
       data: []
     };
   }
+
+  componentDidMount = value => {
+    this.props.navigation.setParams({ deletePost: this.deletePost });
+  };
 
   renderSeparator = () => {
     return (
@@ -88,11 +88,10 @@ class Blog extends React.Component {
             color: '#002A55'
           }}
         >
-          {' '}
-          Blog{' '}
+          Blog
         </Text>
       ),
-      headerRight: (
+      headerRight: global.currUser ? (
         <Icon
           containerStyle={{ marginRight: 15, marginTop: 15 }}
           iconStyle={styles.headerIcon}
@@ -100,7 +99,7 @@ class Blog extends React.Component {
           name="edit"
           onPress={navigation.getParam('goToAdd')}
         />
-      )
+      ) : null
     };
   };
 

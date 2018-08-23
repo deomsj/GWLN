@@ -5,7 +5,8 @@ import {
   View,
   ScrollView,
   Alert,
-  Platform
+  Platform,
+  KeyboardAvoidingView
 } from 'react-native';
 import { Button, Icon } from 'react-native-elements';
 import t from 'tcomb-form-native';
@@ -113,7 +114,7 @@ class NewBlogPost extends React.Component {
     }
   };
 
-  submit = () => {
+  submit = value => {
     const url = 'https://cuwomen.org/functions/app.gwln.php';
     fetch(url, {
       method: 'POST',
@@ -130,8 +131,8 @@ class NewBlogPost extends React.Component {
       })
     })
       .then(res => res.json())
-      .then(res => {
-        this.resetForm({});
+      .then(() => {
+        // this.resetForm({});
         this.props.navigation.navigate('BlogPostList');
       })
       .catch(error => {
@@ -141,7 +142,12 @@ class NewBlogPost extends React.Component {
 
   render() {
     return (
-      <View style={styles.mainContainer}>
+      <KeyboardAvoidingView
+        enabled
+        behavior="padding"
+        keyboardVerticalOffset={50}
+        style={styles.mainContainer}
+      >
         <ScrollView>
           <View style={styles.container}>
             <Form
@@ -158,7 +164,7 @@ class NewBlogPost extends React.Component {
             </View>
           </View>
         </ScrollView>
-      </View>
+      </KeyboardAvoidingView>
     );
   }
 }

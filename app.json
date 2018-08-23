@@ -1,12 +1,15 @@
 {
   "expo": {
     "sdkVersion": "27.0.0",
-    "name": "GWLNTest",
+    "name": "GWLN",
+    "icon": "./img/Gwln_Icon.png",
+    "version": "1.0.0",
+    "slug": "glwn-event-app",
     "ios": {
-      "bundleIdentifier": "com.rjsofab.GWLNTest"
+      "bundleIdentifier": "com.gwln.eventapp"
     },
     "android": {
-      "package": "com.rjsofab.GWLNTest"
+      "package": "com.gwln.eventapp"
     }
   }
 }
