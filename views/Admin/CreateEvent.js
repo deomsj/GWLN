@@ -110,7 +110,6 @@ class CreateEvent extends React.Component {
 
   handleSubmit = () => {
     const value = this.refs.form.getValue();
-    console.log('value', value);
     if (value) {
       Alert.alert(
         'Create Event',
@@ -130,7 +129,6 @@ class CreateEvent extends React.Component {
   submit = value => {
     let TmpDate = value.date;
     TmpDate = moment(TmpDate).format('YYYY-M-D');
-    console.log(TmpDate);
     TmpDate = String(TmpDate).split('-');
     var _year = TmpDate[0];
     var _month = TmpDate[1];
@@ -170,7 +168,6 @@ class CreateEvent extends React.Component {
       .catch(error => {
         console.log(error);
       });
-    console.log('fetch');
   };
 
   render() {

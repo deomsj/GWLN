@@ -49,9 +49,7 @@ class MemberContactPage extends React.Component {
     }
   };
 
-  ComponentDidMount() {}
   render() {
-    console.log(this.props.navigation.state.params.user);
     const phoneArgs = {
       number: this.props.navigation.state.params.user.phone_business_main,
       prompt: true

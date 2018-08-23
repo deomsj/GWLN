@@ -57,15 +57,6 @@ class EventDetails extends React.Component {
       });
   };
 
-  _test = () => {
-    let tmp = this.state.detailEvent;
-    console.log('in test');
-
-    if (this.state.detailEvent.length > 0) {
-      console.log(tmp[0].event_name);
-    }
-  };
-
   _GoToRSVP = () => {
     let ID = this.state.data.timeline_event_id;
     this.props.navigation.navigate('RSVP', { ID });
@@ -75,7 +66,6 @@ class EventDetails extends React.Component {
     this.retrieveEvent();
   }
   render() {
-    console.log(this.state.data);
     const {
       event_name,
       event_month,

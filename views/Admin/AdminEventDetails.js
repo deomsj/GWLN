@@ -141,7 +141,6 @@ class AdminEventDetails extends React.Component {
   goToCheckIn = () => {
     let CheckInEventID = this.props.navigation.state.params.item
       .timeline_event_id;
-    console.log('in go to check in');
     this.props.navigation.navigate('CheckIn', { CheckInEventID });
   };
   renderSeparator = () => {
@@ -156,14 +155,12 @@ class AdminEventDetails extends React.Component {
   };
   GetNumberOfAttendees = () => {
     let tmpAttendees = this.state.attendees;
-    console.log(tmpAttendees);
     let tmpNumAttendees = 0;
     global.numAttendees = 0;
     for (var i = 0; i < tmpAttendees.length; i++) {
       tmpNumAttendees = tmpNumAttendees + parseInt(tmpAttendees[i].guests_rsvp);
     }
     global.numAttendees = tmpNumAttendees;
-    console.log(global.numAttendees);
     this.setState({
       numAttendeesLoading: false
     });

@@ -51,10 +51,8 @@ class MyUpcomingEvents extends React.Component {
 
   _onPressItem = item => {
     if (global.currUser.is_event_admin) {
-      //console.log('in admin')
       this.props.navigation.navigate('AdminEventDetails', { item });
     } else {
-      //console.log('in member')
       this.props.navigation.navigate('EventDetails', { item });
     }
   };

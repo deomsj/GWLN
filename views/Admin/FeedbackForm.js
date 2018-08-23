@@ -131,7 +131,6 @@ class FeedbackForm extends React.Component {
       .then(res => res.json())
       .then(res => {
         if (res) {
-          console.log(res);
           this.resetForm({});
           this.props.navigation.navigate('Admin');
         } else {

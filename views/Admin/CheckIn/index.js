@@ -55,7 +55,6 @@ class CheckIn extends React.Component {
       fetchEventCheckIn(eventId, memInfo, like_to_be)
         .then(res => res.json())
         .then(res => {
-          console.log('-----------------res-----------------', res);
           if (res && res.checkin_id) {
             const { first_name, last_name } = res;
             this.CheckInSuccess(first_name, last_name);
@@ -79,7 +78,6 @@ class CheckIn extends React.Component {
       fetchMemberInfo(email)
         .then(res => res.json())
         .then(memInfo => {
-          console.log('-----------------memInfo-----------------', memInfo);
           if (memInfo && memInfo.member_id) {
             const eventId = this.props.navigation.state.params.CheckInEventID;
             fetchEventCheckIn(eventId, memInfo)
@@ -117,7 +115,6 @@ class CheckIn extends React.Component {
   };
 
   render() {
-    console.log('---------- state ------------', this.state);
     return (
       <View style={styles.mainContainer}>
         <View style={styles.radioContainer}>

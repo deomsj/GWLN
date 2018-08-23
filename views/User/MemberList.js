@@ -63,7 +63,6 @@ class MemberList extends React.Component {
     );
   };
   _onPressItem = item => {
-    console.log('item  --- ', item);
     this.props.navigation.navigate('MemberContactPage', { user: item });
   };
 
@@ -134,7 +133,6 @@ class MemberList extends React.Component {
   };
 
   render() {
-    console.log('render data length', this.state.data.length);
     return (
       <View style={styles.mainContainer}>
         <List containerStyle={{ borderTopWidth: 0, borderBottomWidth: 0 }}>

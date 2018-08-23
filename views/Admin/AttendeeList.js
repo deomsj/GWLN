@@ -3,12 +3,10 @@ import {
   StyleSheet,
   Text,
   View,
-  Alert,
-  ScrollView,
   FlatList,
   TouchableOpacity
 } from 'react-native';
-import { ListItem, Icon } from 'react-native-elements';
+import { ListItem } from 'react-native-elements';
 import '../../global';
 
 class AttendeeList extends React.Component {
@@ -37,28 +35,54 @@ class AttendeeList extends React.Component {
         >
           Attendee List
         </Text>
-      ),
-      headerRight: (
-        <Icon
-          containerStyle={{ marginRight: 15, marginTop: 15 }}
-          iconStyle={styles.headerIcon}
-          name="file-upload"
-          onPress={navigation.getParam('Export')}
-        />
       )
+      // headerRight: (
+      //   <Icon
+      //     containerStyle={{ marginRight: 15, marginTop: 15 }}
+      //     iconStyle={styles.headerIcon}
+      //     name="file-upload"
+      //     onPress={navigation.getParam('Export')}
+      //   />
+      // )
     };
   };
 
-  exportList = () => {
-    Alert.alert(
-      'Export Attendee List',
-      'Are you sure you want to export this form?',
-      [
-        { text: 'Yes', onPress: () => this.ExportAttendeeList },
-        { text: 'Cancel', onPress: () => console.log('Cancel Pressed') }
-      ]
-    );
-  };
+  // exportList = () => {
+  //   Alert.alert(
+  //     'Export Attendee List',
+  //     'Are you sure you want to export this form?',
+  //     [
+  //       { text: 'Yes', onPress: () => this.ExportAttendeeList() },
+  //       { text: 'Cancel', onPress: () => console.log('Cancel Pressed') }
+  //     ]
+  //   );
+  // };
+
+  // ExportAttendeeList = () => {
+  //   const url = 'https://cuwomen.org/functions/app.gwln.php';
+  //   fetch(url, {
+  //     method: 'POST',
+  //     headers: {
+  //       'X-Token': 'hub46bubg75839jfjsbs8532hs09hurdfy47sbub'
+  //     },
+  //     body: JSON.stringify({
+  //       code: 'sendRSVPList',
+  //       arguments: {
+  //         timeline_event_id: this.props.navigation.state.params.ID
+  //       }
+  //     })
+  //   })
+  //     .then(res => res.json())
+  //     .then(res => {
+  //       if (res) {
+  //         console.log('------------EXPORTED DATA-----------');
+  //         console.log(res);
+  //       }
+  //     })
+  //     .catch(error => {
+  //       console.log(error);
+  //     });
+  // };
 
   _toggleDisplay = () => {
     if (this.state.display === 'checkedIn') {
@@ -141,34 +165,9 @@ class AttendeeList extends React.Component {
     </TouchableOpacity>
   );
 
-  ExportAttendeeList = () => {
-    const url = 'https://cuwomen.org/functions/app.gwln.php';
-    fetch(url, {
-      method: 'POST',
-      headers: {
-        'X-Token': 'hub46bubg75839jfjsbs8532hs09hurdfy47sbub'
-      },
-      body: JSON.stringify({
-        code: 'sendRSVPList',
-        arguments: {
-          timeline_event_id: this.props.navigation.state.params.ID
-        }
-      })
-    })
-      .then(res => res.json())
-      .then(res => {
-        if (res) {
-          console.log(res);
-        }
-      })
-      .catch(error => {
-        console.log(error);
-      });
-  };
-
   componentDidMount() {
     this.retrieveEvent();
-    this.props.navigation.setParams({ Export: this.exportList });
+    // this.props.navigation.setParams({ Export: this.exportList });
   }
 
   _keyExtractor = item => String(item.username);
@@ -180,21 +179,17 @@ class AttendeeList extends React.Component {
       <View style={styles.container}>
         {getHeader(display, totals, this._toggleDisplay)}
         {display === 'checkedIn' ? (
-          <ScrollView>
-            <FlatList
-              data={checkedIn}
-              renderItem={this._renderCheckedIn}
-              keyExtractor={this._keyExtractor}
-            />
-          </ScrollView>
+          <FlatList
+            data={checkedIn}
+            renderItem={this._renderCheckedIn}
+            keyExtractor={this._keyExtractor}
+          />
         ) : (
-          <ScrollView>
-            <FlatList
-              data={stillExpecting}
-              renderItem={this._renderExpecting}
-              keyExtractor={this._keyExtractor}
-            />
-          </ScrollView>
+          <FlatList
+            data={stillExpecting}
+            renderItem={this._renderExpecting}
+            keyExtractor={this._keyExtractor}
+          />
         )}
       </View>
     );

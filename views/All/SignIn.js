@@ -89,7 +89,6 @@ class SignIn extends React.Component {
 
             this.resetForm;
           } else {
-            console.log('wrong creds');
             this.DiscardForm();
           }
         })
