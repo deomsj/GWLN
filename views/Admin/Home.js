@@ -3,12 +3,11 @@ import { StyleSheet, Text, View, Button, Platform } from 'react-native';
 import RNPickerSelect from 'react-native-picker-select';
 import ImgGallery from '../../components/ImgGallery';
 
-class HomeScreen extends React.Component {
+class AdminHome extends React.Component {
   constructor() {
     super();
     this.inputRefs = {};
     this.state = {
-      Function: undefined,
       items: [
         { label: 'My Events', value: 'MyUpcomingEvents' },
         { label: 'Provide Feedback', value: 'FeedbackForm' },
@@ -17,10 +16,25 @@ class HomeScreen extends React.Component {
     };
   }
 
-  pickerNavigate = () => {
-    var nextPage = this.state.PickerValue;
-    this.props.navigation.navigate(nextPage);
+  pickerNavigate = pickerValue => {
+    if (pickerValue) {
+      this.props.navigation.navigate(pickerValue);
+    }
+    this.setState({ pickerValue });
   };
+
+  resetPicker = () => this.setState({ pickerValue: null });
+
+  componentDidMount() {
+    this._focusListener = this.props.navigation.addListener(
+      'didFocus',
+      this.resetPicker
+    );
+  }
+
+  componentWillUnmount() {
+    this._focusListener.remove();
+  }
 
   render() {
     var buttonColors = ['rgba(255, 255, 255, 1)'];
@@ -42,13 +56,9 @@ class HomeScreen extends React.Component {
             <RNPickerSelect
               placeholder={{ label: 'Manage Events...', color: 'gray' }}
               items={this.state.items}
+              value={this.state.pickerValue}
               hideIcon={true}
-              onValueChange={value => {
-                this.setState({ Function: value });
-                if (value) {
-                  this.props.navigation.navigate(value);
-                }
-              }}
+              onValueChange={this.pickerNavigate}
               style={{ ...pickerStyle }}
             />
           </View>
@@ -174,4 +184,4 @@ const pickerStyle = StyleSheet.create({
   }
 });
 
-export default HomeScreen;
+export default AdminHome;

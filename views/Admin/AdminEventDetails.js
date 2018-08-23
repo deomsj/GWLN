@@ -3,13 +3,12 @@ import {
   StyleSheet,
   Text,
   View,
-  Button,
   Alert,
   ScrollView,
   Platform,
   TouchableOpacity
 } from 'react-native';
-import { Icon } from 'react-native-elements';
+import { Button, Icon } from 'react-native-elements';
 import { ListItem } from 'react-native-elements';
 import contactData from '../../mock-database/crm.contacts.json';
 import '../../global';
@@ -207,13 +206,11 @@ class AdminEventDetails extends React.Component {
             </Text>
           </View>
           <View style={styles.buttonContainer}>
-            <View style={styles.button}>
-              <Button
-                color={buttonColors}
-                title="Begin Check In"
-                onPress={() => this.goToCheckIn()}
-              />
-            </View>
+            <Button
+              buttonStyle={styles.button}
+              title="Begin Check In"
+              onPress={() => this.goToCheckIn()}
+            />
           </View>
         </ScrollView>
       </View>
@@ -235,9 +232,8 @@ const styles = StyleSheet.create({
     alignSelf: 'center'
   },
   button: {
-    alignSelf: 'center',
-    elevation: 0,
-    paddingHorizontal: 20,
+    height: 40,
+    width: 160,
     backgroundColor: '#002A55',
     ...Platform.select({
       ios: {
@@ -248,9 +244,8 @@ const styles = StyleSheet.create({
       }
     }),
     borderWidth: 1,
-    borderRadius: 10,
-    flexDirection: 'column',
-    paddingVertical: 3
+    borderRadius: 5,
+    paddingVertical: 1
   },
   heading: {
     flex: 1,
@@ -281,8 +276,8 @@ const styles = StyleSheet.create({
     padding: 10
   },
   attendeeButton: {
-    paddingHorizontal: 15,
-    paddingVertical: 10,
+    paddingHorizontal: 20,
+    paddingVertical: 8,
     backgroundColor: 'white',
     borderColor: '#002A55',
     color: '#002A55',

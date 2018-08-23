@@ -3,16 +3,11 @@ import {
   StyleSheet,
   Text,
   View,
-  Button,
   ScrollView,
   Alert,
   Platform
 } from 'react-native';
-import {
-  createStackNavigator,
-  createBottomTabNavigator
-} from 'react-navigation';
-import { Icon } from 'react-native-elements';
+import { Button, Icon } from 'react-native-elements';
 import moment from 'moment';
 
 // import a from './Components/alert';
@@ -115,7 +110,24 @@ class CreateEvent extends React.Component {
 
   handleSubmit = () => {
     const value = this.refs.form.getValue();
+    console.log('value', value);
+    if (value) {
+      Alert.alert(
+        'Create Event',
+        'Are you sure you want to create this event?',
+        [
+          {
+            text: 'Cancel',
+            onPress: () => console.log('Cancel Pressed'),
+            style: 'cancel'
+          },
+          { text: 'Yes', onPress: () => this.submit(value) }
+        ]
+      );
+    }
+  };
 
+  submit = value => {
     let TmpDate = value.date;
     TmpDate = moment(TmpDate).format('YYYY-M-D');
     console.log(TmpDate);
@@ -124,50 +136,44 @@ class CreateEvent extends React.Component {
     var _month = TmpDate[1];
     var _day = TmpDate[2];
 
-    if (value) {
-      const url = 'https://cuwomen.org/functions/app.gwln.php';
-      fetch(url, {
-        method: 'POST',
-        headers: {
-          'X-Token': 'hub46bubg75839jfjsbs8532hs09hurdfy47sbub'
-        },
-        body: JSON.stringify({
-          code: 'insertEvent',
-          arguments: {
-            event_day: _day,
-            event_month: _month,
-            event_year: _year,
-            event_name: value.event_name,
-            event_description: value.event_description,
-            event_picture: null,
-            pic_caption: null,
-            link: null,
-            username: global.currUser.username,
-            location: value.location
-          }
-        })
+    const url = 'https://cuwomen.org/functions/app.gwln.php';
+    fetch(url, {
+      method: 'POST',
+      headers: {
+        'X-Token': 'hub46bubg75839jfjsbs8532hs09hurdfy47sbub'
+      },
+      body: JSON.stringify({
+        code: 'insertEvent',
+        arguments: {
+          event_day: _day,
+          event_month: _month,
+          event_year: _year,
+          event_name: value.event_name,
+          event_description: value.event_description,
+          event_picture: null,
+          pic_caption: null,
+          link: null,
+          username: global.currUser.username,
+          location: value.location
+        }
       })
-        .then(res => res.json())
-        .then(res => {
-          if (res) {
-            this.props.navigation.navigate('Admin');
-          } else {
-            console.log('error');
-            this.DiscardForm();
-          }
-        })
-        .catch(error => {
-          console.log(error);
-        });
-      console.log('fetch');
-    }
+    })
+      .then(res => res.json())
+      .then(res => {
+        if (res) {
+          this.props.navigation.navigate('Admin');
+        } else {
+          console.log('error');
+          this.DiscardForm();
+        }
+      })
+      .catch(error => {
+        console.log(error);
+      });
+    console.log('fetch');
   };
 
   render() {
-    var buttonColors = ['rgba(255, 255, 255, 1)'];
-    if (Platform.OS === 'android') {
-      buttonColors = ['rgba(0, 42, 85, 1)'];
-    }
     return (
       <View style={styles.mainContainer}>
         <ScrollView>
@@ -176,21 +182,8 @@ class CreateEvent extends React.Component {
             <View style={styles.buttonContainer}>
               <Button
                 title="Create Event"
-                onPress={() =>
-                  Alert.alert(
-                    'Create Event',
-                    'Are you sure you want to create this event?',
-                    [
-                      {
-                        text: 'Cancel',
-                        onPress: () => console.log('Cancel Pressed'),
-                        style: 'cancel'
-                      },
-                      { text: 'Yes', onPress: this.handleSubmit }
-                    ]
-                  )
-                }
-                color={buttonColors}
+                onPress={this.handleSubmit}
+                buttonStyle={styles.button}
               />
             </View>
           </View>
@@ -221,10 +214,6 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     color: '#002a55'
   },
-  buttons: {
-    padding: 40,
-    margin: 10
-  },
   to: {
     margin: 24,
     padding: 40,
@@ -238,9 +227,12 @@ const styles = StyleSheet.create({
     color: '#002A55'
   },
   buttonContainer: {
-    elevation: 0,
     alignSelf: 'center',
-    paddingHorizontal: 30,
+    padding: 20
+  },
+  button: {
+    height: 40,
+    width: 200,
     backgroundColor: '#002A55',
     ...Platform.select({
       ios: {
@@ -252,6 +244,6 @@ const styles = StyleSheet.create({
     }),
     borderWidth: 1,
     borderRadius: 5,
-    flexDirection: 'column'
+    paddingVertical: 1
   }
 });

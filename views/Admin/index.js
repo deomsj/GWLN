@@ -9,7 +9,6 @@ import Profile from '../User/Profile';
 import EventCalendar from '../All/EventCalendar';
 import AdminHome from './Home';
 import '../../global';
-//import contactData from './../mock-database/crm.contacts.json';
 
 const Admin = createBottomTabNavigator({
   Home: {
@@ -76,7 +75,6 @@ Admin.navigationOptions = ({ navigation }) => {
             color: 'white'
           }}
         >
-          {' '}
           {global.currUser.first_name} {global.currUser.last_name}
         </Text>
       ),

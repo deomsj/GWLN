@@ -6,10 +6,6 @@ import {
   FlatList,
   TouchableOpacity
 } from 'react-native';
-import {
-  createStackNavigator,
-  createBottomTabNavigator
-} from 'react-navigation';
 import { ListItem } from 'react-native-elements';
 import '../../global';
 
@@ -69,7 +65,6 @@ class MyUpcomingEvents extends React.Component {
         id={item.id}
         title={item.event_name}
         subtitle={`${item.event_month}/${item.event_day}/${item.event_year}`}
-        //avatar={{ uri: item.picture.thumbnail }}
         containerStyle={{ borderBottomWidth: 0 }}
       />
     </TouchableOpacity>
@@ -115,15 +110,18 @@ class MyUpcomingEvents extends React.Component {
     })
       .then(res => res.json())
       .then(res => {
-        //console.log(res);
-        let tmpRes = res;
-        var filteredRes = tmpRes.filter(event => {
+        const userEvents = res.filter(event => {
           return event.username == global.currUser.username;
         });
-        console.log(filteredRes);
-        this.setState({
-          data: [...this.state.data, ...filteredRes]
-        });
+        const combinedUserEvents = [...this.state.data, ...userEvents];
+        const uniqueIds = {};
+        const uniqueUserEvents = combinedUserEvents.filter(
+          ({ timeline_event_id: id }) => {
+            uniqueIds[id] = (uniqueIds[id] || 0) + 1;
+            return uniqueIds[id] < 2;
+          }
+        );
+        this.setState({ data: uniqueUserEvents });
       });
   };
 
