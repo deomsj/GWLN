@@ -34,7 +34,7 @@ class Blog extends React.Component {
     this.props.navigation.navigate('BlogPost', { post: item });
   };
 
-  makeRemoteRequest = () => {
+  getBlogPosts = () => {
     const url = 'https://cuwomen.org/functions/app.gwln.php';
     fetch(url, {
       method: 'POST',
@@ -101,13 +101,16 @@ class Blog extends React.Component {
 
   componentDidMount = () => {
     this.props.navigation.setParams({ goToAdd: this.goToNewBlogPost });
-    this.makeRemoteRequest();
-    this.mounted = true;
+    this._focusListener = this.props.navigation.addListener(
+      'didFocus',
+      this.getBlogPosts
+    );
   };
 
   componentWillUnmount() {
-    this.mounted = false;
+    this._focusListener.remove();
   }
+
   goToNewBlogPost = () => {
     this.props.navigation.navigate('NewBlogPost');
   };

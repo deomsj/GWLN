@@ -33,7 +33,7 @@ class AdminEventDetails extends React.Component {
         onPress: () => console.log('Cancel Pressed'),
         style: 'cancel'
       },
-      { text: 'Yes', onPress: () => this.DeleteEvent() }
+      { text: 'Yes', onPress: this.DeleteEvent }
     ]);
   };
 
@@ -53,7 +53,7 @@ class AdminEventDetails extends React.Component {
       })
     })
       .then(res => res.json())
-      .then(res => {
+      .then(() => {
         this.props.navigation.navigate('EventCalendar', {
           eventsUpdated: 'true'
         });
@@ -170,27 +170,19 @@ class AdminEventDetails extends React.Component {
     this.retrieveEvent();
   }
   render() {
-    var buttonColors = ['rgba(255, 255, 255, 1)'];
-    if (Platform.OS === 'android') {
-      buttonColors = ['rgba(0, 42, 85, 1)'];
-    }
-
     return (
       <View style={styles.container}>
         <ScrollView>
           <View style={styles.heading}>
             <Text style={styles.infoText}>
-              {' '}
               {this.props.navigation.state.params.item.event_month}/
               {this.props.navigation.state.params.item.event_day}/
               {this.props.navigation.state.params.item.event_year}{' '}
             </Text>
             <Text style={styles.infoText}>
-              {' '}
               {this.props.navigation.state.params.item.event_location}{' '}
             </Text>
             <Text style={styles.infoText}>
-              {' '}
               There are {global.numAttendees} people planning to attend.{' '}
             </Text>
           </View>
