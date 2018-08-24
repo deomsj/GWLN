@@ -2,7 +2,6 @@ import React from 'react';
 import { StyleSheet, Text, View, ScrollView, Platform } from 'react-native';
 import { Button } from 'react-native-elements';
 import HTML from 'react-native-render-html';
-// import  from '../../mock-database/crm.contacts.json';
 import '../../global';
 
 class EventDetails extends React.Component {

@@ -13,8 +13,6 @@ import { ListItem } from 'react-native-elements';
 import contactData from '../../mock-database/crm.contacts.json';
 import '../../global';
 
-//import EventData from '../www_timeline_events.json';
-
 class AdminEventDetails extends React.Component {
   constructor(props) {
     super(props);
@@ -55,7 +53,7 @@ class AdminEventDetails extends React.Component {
       .then(res => res.json())
       .then(() => {
         this.props.navigation.navigate('EventCalendar', {
-          eventsUpdated: 'true'
+          haveCurrentEvents: false
         });
       })
       .catch(error => {
@@ -66,22 +64,13 @@ class AdminEventDetails extends React.Component {
   static navigationOptions = ({ navigation }) => {
     return {
       headerTitle: (
-        <Text
-          style={{
-            flex: 1,
-            textAlign: 'center',
-            alignSelf: 'center',
-            fontWeight: 'bold',
-            fontSize: 20,
-            color: '#002A55'
-          }}
-        >
+        <Text style={styles.headerTitle}>
           {navigation.state.params.item.event_name}
         </Text>
       ),
       headerRight: (
         <Icon
-          containerStyle={{ marginRight: 15, marginTop: 15 }}
+          containerStyle={{ marginRight: 15, marginTop: 10 }}
           iconStyle={styles.headerIcon}
           type="font-awesome"
           name="trash"
@@ -208,6 +197,14 @@ class AdminEventDetails extends React.Component {
 }
 
 const styles = StyleSheet.create({
+  headerTitle: {
+    flex: 1,
+    textAlign: 'center',
+    alignSelf: 'center',
+    fontWeight: 'bold',
+    fontSize: 20,
+    color: '#002A55'
+  },
   container: {
     backgroundColor: 'white',
     flex: 1,

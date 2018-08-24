@@ -24,6 +24,9 @@ class EventCalendar extends React.Component {
   }
 
   retrieveEvents = () => {
+    if (this.props.navigation.getParam('haveCurrentEvents')) {
+      return;
+    }
     const url = 'https://cuwomen.org/functions/app.gwln.php';
     fetch(url, {
       method: 'POST',
@@ -36,6 +39,7 @@ class EventCalendar extends React.Component {
     })
       .then(res => res.json())
       .then(res => {
+        this.props.navigation.setParams({ haveCurrentEvents: true });
         if (res) {
           this.state.data = res;
           this.sortEvents();
@@ -70,7 +74,9 @@ class EventCalendar extends React.Component {
 
   goToEventDetails = event => {
     let filteredID = event.timeline_event_id;
-    this.props.navigation.navigate('EventDetails', { filteredID });
+    this.props.navigation.navigate('EventDetails', {
+      filteredID
+    });
   };
 
   componentDidMount() {

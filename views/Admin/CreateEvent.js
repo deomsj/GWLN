@@ -159,7 +159,9 @@ class CreateEvent extends React.Component {
       .then(res => res.json())
       .then(res => {
         if (res) {
-          this.props.navigation.navigate('Admin');
+          this.props.navigation.navigate('EventCalendar', {
+            haveCurrentEvents: false
+          });
         } else {
           console.log('error');
           this.DiscardForm();
@@ -175,7 +177,12 @@ class CreateEvent extends React.Component {
       <View style={styles.mainContainer}>
         <ScrollView>
           <View style={styles.container}>
-            <Form ref="form" type={Event} options={options} />
+            <Form
+              ref="form"
+              type={Event}
+              options={options}
+              value={{ date: new Date() }}
+            />
             <View style={styles.buttonContainer}>
               <Button
                 title="Create Event"
