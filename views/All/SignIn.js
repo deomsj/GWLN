@@ -13,11 +13,20 @@ import t from 'tcomb-form-native';
 import GWLNlogo from '../../img/gwln_logo.jpg';
 import WorldCouncilLogo from '../../img/WorldCouncil_logo.png';
 
-//Dev Only
-const defaultValue = {
-  email: 'Brooke.thomas@elevationscu.com',
-  password: 'abc123'
-};
+//Standard
+let defaultValue = {};
+
+//Dev Only - Member
+// defaultValue = {
+//   email: '?????',
+//   password: '????'
+// };
+
+//Dev Only - Admin
+// defaultValue = {
+//   email: 'Brooke.thomas@elevationscu.com',
+//   password: 'abc123'
+// };
 
 const Form = t.form.Form;
 // overriding the text color for every textbox in every form of your app
