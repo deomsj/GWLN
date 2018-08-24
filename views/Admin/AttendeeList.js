@@ -112,31 +112,18 @@ class AttendeeList extends React.Component {
           const checkedIn = res.filter(
             ({ guests_checkin }) => guests_checkin > 0
           );
-          const stillExpecting = res
-            .map(person => ({
-              ...person,
-              expecting: person.guests_rsvp - person.guests_checkin
-            }))
-            .filter(({ expecting }) => expecting > 0);
+          const RSVP = res.filter(({ guests_rsvp }) => guests_rsvp > 0);
           const totals = res.reduce(
             (agg, person) => {
-              const surprises = person.guests_checkin - person.guests_rsvp;
-              const stillExpecting = person.guests_rsvp - person.guests_checkin;
               return {
                 checkedIn: agg.checkedIn + Number(person.guests_checkin),
-                RSVPd: agg.RSVPd + Number(person.guests_rsvp),
-                surprises: agg.surprises + Math.max(surprises, 0),
-                stillExpecting: agg.stillExpecting + Math.max(stillExpecting, 0)
+                RSVP: agg.RSVP + Number(person.guests_rsvp)
               };
             },
-            { checkedIn: 0, RSVPd: 0, surprises: 0, stillExpecting: 0 }
+            { checkedIn: 0, RSVP: 0 }
           );
 
-          this.setState({
-            checkedIn,
-            stillExpecting,
-            totals
-          });
+          this.setState({ checkedIn, RSVP, totals });
         }
       })
       .catch(error => {
@@ -145,7 +132,7 @@ class AttendeeList extends React.Component {
   };
 
   _renderCheckedIn = ({ item }) => this._renderItem(item, 'guests_checkin');
-  _renderExpecting = ({ item }) => this._renderItem(item, 'expecting');
+  _renderRSVP = ({ item }) => this._renderItem(item, 'guests_rsvp');
 
   _renderItem = (item, badge) => (
     <TouchableOpacity>
@@ -173,7 +160,7 @@ class AttendeeList extends React.Component {
   _keyExtractor = item => String(item.username);
 
   render() {
-    const { totals, checkedIn, stillExpecting, display } = this.state;
+    const { totals, checkedIn, RSVP, display } = this.state;
     // run query of events on the day that is passed then store the information in an array of objects
     return (
       <View style={styles.container}>
@@ -186,8 +173,8 @@ class AttendeeList extends React.Component {
           />
         ) : (
           <FlatList
-            data={stillExpecting}
-            renderItem={this._renderExpecting}
+            data={RSVP}
+            renderItem={this._renderRSVP}
             keyExtractor={this._keyExtractor}
           />
         )}
@@ -236,7 +223,7 @@ const getHeader = (display, totals, toggle) =>
         Checked In - {totals.checkedIn}
       </Text>
       <Text onPress={toggle} style={styles.header}>
-        Expecting - {totals.stillExpecting}
+        Expecting - {totals.RSVP}
       </Text>
     </View>
   ) : (
@@ -245,7 +232,7 @@ const getHeader = (display, totals, toggle) =>
         Checked In - {totals.checkedIn}
       </Text>
       <Text onPress={toggle} style={styles.headerActive}>
-        Expecting - {totals.stillExpecting}
+        Expecting - {totals.RSVP}
       </Text>
     </View>
   );

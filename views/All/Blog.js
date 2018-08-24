@@ -18,10 +18,6 @@ class Blog extends React.Component {
     };
   }
 
-  componentDidMount = value => {
-    this.props.navigation.setParams({ deletePost: this.deletePost });
-  };
-
   renderSeparator = () => {
     return (
       <View
