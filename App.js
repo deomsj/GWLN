@@ -22,6 +22,8 @@ import AdminEventDetails from './views/Admin/AdminEventDetails';
 import AttendeeList from './views/Admin/AttendeeList';
 import Profile from './views/User/Profile';
 
+console.disableYellowBox = true;
+
 const NavigationFlow = createStackNavigator(
   {
     //Guest
