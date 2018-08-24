@@ -18,8 +18,8 @@ let defaultValue = {};
 
 //Dev Only - Member
 // defaultValue = {
-//   email: '?????',
-//   password: '????'
+//   email: 'angie.mccurdy@elevationscu.com',
+//   password: 'abc123'
 // };
 
 //Dev Only - Admin
@@ -90,6 +90,7 @@ class SignIn extends React.Component {
         .then(res => {
           if (res != false) {
             global.currUser = res;
+            console.log('global.currUser Logged In!!!!!!!', global.currUser);
             if (global.currUser.is_event_admin) {
               this.props.navigation.navigate('Admin');
             } else {

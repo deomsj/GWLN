@@ -5,6 +5,7 @@
     "icon": "./img/Gwln_Icon.png",
     "version": "1.0.0",
     "slug": "glwn-event-app",
+    "privacy": "public",
     "ios": {
       "bundleIdentifier": "com.gwln.eventapp"
     },
