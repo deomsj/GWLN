@@ -12,7 +12,7 @@ import moment from 'moment';
 
 // import a from './Components/alert';
 
-import '../../global';
+import '../../config/global';
 
 import t from 'tcomb-form-native';
 

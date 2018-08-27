@@ -1,32 +1,22 @@
 import React from 'react';
-import { StyleSheet, Text, Image, View } from 'react-native';
+import { StyleSheet, Text, View, Image } from 'react-native';
 import { createBottomTabNavigator } from 'react-navigation';
 import { Icon } from 'react-native-elements';
 
-import GWLNlogo from '../../img/gwln_logo.jpg';
+import GWLNlogo from '../../assets/img/gwln_logo.jpg';
 import Donate from '../All/Donate';
-import Profile from '../User/Profile';
 import EventCalendar from '../All/EventCalendar';
-import MemberHome from './Home';
-import '../../global';
+import GuestHome from './Home';
+import '../../config/global';
 //import contactData from './../mock-database/crm.contacts.json';
 
-const Member = createBottomTabNavigator({
+const Guest = createBottomTabNavigator({
   Home: {
-    screen: MemberHome,
+    screen: GuestHome,
     navigationOptions: {
       tabBarLabel: 'Home',
       tabBarIcon: ({ tintColor }) => (
         <Icon name="home" color={tintColor} size={30} />
-      )
-    }
-  },
-  Profile: {
-    screen: Profile,
-    navigationOptions: {
-      tabBarLabel: 'Profile',
-      tabBarIcon: ({ tintColor }) => (
-        <Icon type="font-awesome" name="user" color={tintColor} size={30} />
       )
     }
   },
@@ -50,32 +40,12 @@ const Member = createBottomTabNavigator({
   }
 });
 
-Member.navigationOptions = ({ navigation }) => {
+Guest.navigationOptions = ({ navigation }) => {
   let { routeName } = navigation.state.routes[navigation.state.index];
   let title;
   if (routeName === 'Home') {
     return {
       headerTitle: <Image source={GWLNlogo} style={styles.GWLNlogo} />,
-      headerLeft: <View />,
-      headerRight: <View />
-    };
-  } else if (routeName === 'Profile') {
-    return {
-      headerTitle: (
-        <Text
-          style={{
-            flex: 1,
-            textAlign: 'center',
-            alignSelf: 'center',
-            fontWeight: '300',
-            fontSize: 20,
-            color: '#002A55'
-          }}
-        >
-          {global.currUser.first_name} {global.currUser.last_name}
-        </Text>
-      ),
-      headerLeft: <View />,
       headerRight: <View />
     };
   } else if (routeName === 'EventCalendar') {
@@ -94,8 +64,7 @@ Member.navigationOptions = ({ navigation }) => {
           Event Calendar
         </Text>
       ),
-      headerLeft: <View />,
-      headerRight: <View />
+      headerLeft: null
     };
   } else if (routeName === 'GWLN') {
     return {
@@ -122,7 +91,7 @@ Member.navigationOptions = ({ navigation }) => {
   };
 };
 
-export default Member;
+export default Guest;
 
 const styles = StyleSheet.create({
   GWLNlogo: {

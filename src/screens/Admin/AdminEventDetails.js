@@ -10,7 +10,7 @@ import {
 } from 'react-native';
 import { Button, Icon } from 'react-native-elements';
 import { ListItem } from 'react-native-elements';
-import '../../global';
+import '../../config/global';
 
 class AdminEventDetails extends React.Component {
   constructor(props) {

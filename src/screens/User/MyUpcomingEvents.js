@@ -7,7 +7,7 @@ import {
   TouchableOpacity
 } from 'react-native';
 import { ListItem } from 'react-native-elements';
-import '../../global';
+import '../../config/global';
 
 class MyUpcomingEvents extends React.Component {
   static navigationOptions = {

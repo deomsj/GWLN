@@ -3,12 +3,12 @@ import { StyleSheet, Text, View, Image } from 'react-native';
 import { createBottomTabNavigator } from 'react-navigation';
 import { Icon } from 'react-native-elements';
 
-import GWLNlogo from '../../img/gwln_logo.jpg';
+import GWLNlogo from '../../assets/img/gwln_logo.jpg';
 import Donate from '../All/Donate';
 import Profile from '../User/Profile';
 import EventCalendar from '../All/EventCalendar';
 import AdminHome from './Home';
-import '../../global';
+import '../../config/global';
 
 const Admin = createBottomTabNavigator({
   Home: {

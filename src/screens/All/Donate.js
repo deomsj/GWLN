@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyleSheet, Text, View, Image, Platform, Linking } from 'react-native';
 import { Button } from 'react-native-elements';
-import donateImage from '../../img/Donate.jpg';
+import donateImage from '../../assets/img/Donate.jpg';
 
 const Donate = () => (
   <View>

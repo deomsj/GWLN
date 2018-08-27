@@ -8,7 +8,7 @@ import {
   Alert
 } from 'react-native';
 import { ListItem, Icon } from 'react-native-elements';
-import '../../global';
+import '../../config/global';
 
 class AttendeeList extends React.Component {
   constructor(props) {

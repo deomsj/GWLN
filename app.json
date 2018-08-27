@@ -2,7 +2,7 @@
   "expo": {
     "sdkVersion": "27.0.0",
     "name": "GWLN",
-    "icon": "./img/Gwln_Icon.png",
+    "icon": "./src/assets/img/Gwln_Icon.png",
     "version": "1.0.0",
     "slug": "glwn-event-app",
     "privacy": "public",

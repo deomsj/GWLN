@@ -6,10 +6,6 @@ import {
   FlatList,
   TouchableOpacity
 } from 'react-native';
-import {
-  createStackNavigator,
-  createBottomTabNavigator
-} from 'react-navigation';
 import { SearchBar, List, ListItem } from 'react-native-elements';
 import _ from 'lodash';
 

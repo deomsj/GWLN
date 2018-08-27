@@ -2,7 +2,7 @@ import React from 'react';
 import { StyleSheet, Text, View, ScrollView, Platform } from 'react-native';
 import { Button } from 'react-native-elements';
 import HTML from 'react-native-render-html';
-import '../../global';
+import '../../config/global';
 
 class EventDetails extends React.Component {
   constructor(props) {

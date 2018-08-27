@@ -1,57 +1,12 @@
 import React from 'react';
 import { StyleSheet, Text, View, Image, Platform, Alert } from 'react-native';
 import { Button } from 'react-native-elements';
-import GWLNicon from '../../img/Gwln_Icon.jpg';
-import contactData from '../../mock-database/crm.contacts.json';
-import '../../global';
+import GWLNicon from '../../assets/img/Gwln_Icon.jpg';
+import '../../config/global';
 
 import call from 'react-native-phone-call';
 
-/*====Notes======
-*created a hyperlink for url but put http:// in front of it
-  because assuming it isn't in that form in database
-*need to figure out how not to show info from no_etc
-=================*/
-// <Text
-//   style={styles.linkText}
-//   onPress={() => {Linking.openURL('http://'+global.currUser.web_url)}}>
-//   {global.currUser.web_url}
-// </Text>
-// <Text style={styles.InfoText}> {global.currUser.phone_business_main} </Text>
-
 class Profile extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      memInfo: contactData
-    };
-  }
-
-  filterdata = crm => {
-    //need to catch error and no_contact stuff
-    //will need to format phone number?
-    // parameter being passed in will be a global variable that we get at login
-    let memData = this.state.memInfo;
-    var filteredMemData = memData.contacts.filter(e => {
-      return e.contact_id == crm;
-    });
-    if (filteredMemData != null) {
-      this.setState({
-        memInfo: filteredMemData
-      });
-    }
-  };
-
-  _signOut = () => {};
-
-  componentDidMount() {
-    this.filterdata(global.crm);
-    this.mounted = true;
-  }
-  componentWillUnmount() {
-    this.mounted = false;
-  }
-
   render() {
     const phoneArgs = {
       number: global.currUser.phone_business_main,
@@ -72,9 +27,8 @@ class Profile extends React.Component {
           </Text>
           <Text style={styles.InfoText}> {global.currUser.email1} </Text>
           <Text style={styles.InfoText}>
-            {' '}
             {global.currUser.mailing_address_city},{' '}
-            {global.currUser.mailing_address_country_name}{' '}
+            {global.currUser.mailing_address_country_name}
           </Text>
         </View>
         <View style={styles.optionsContainer}>

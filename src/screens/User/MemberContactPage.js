@@ -7,13 +7,9 @@ import {
   Platform,
   ScrollView
 } from 'react-native';
-import {
-  createStackNavigator,
-  createBottomTabNavigator
-} from 'react-navigation';
 import call from 'react-native-phone-call';
 import HTML from 'react-native-render-html';
-import GWLNicon from '../../img/Gwln_Icon.jpg';
+import GWLNicon from '../../assets/img/Gwln_Icon.jpg';
 
 const DEFAULT_PROPS = {
   tagsStyles: {

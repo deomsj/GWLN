@@ -1,6 +1,6 @@
 import React from 'react';
 import Gallery from 'react-native-image-gallery';
-import GalleryImages from '../img/Gallery';
+import GalleryImages from '../assets/img/Gallery';
 
 const ImgGallery = () => (
   <Gallery

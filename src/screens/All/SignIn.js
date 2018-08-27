@@ -10,23 +10,9 @@ import {
 } from 'react-native';
 import { Button } from 'react-native-elements';
 import t from 'tcomb-form-native';
-import GWLNlogo from '../../img/gwln_logo.jpg';
-import WorldCouncilLogo from '../../img/WorldCouncil_logo.png';
-
-//Standard
-let defaultValue = {};
-
-//Dev Only - Member
-// defaultValue = {
-//   email: 'angie.mccurdy@elevationscu.com',
-//   password: 'abc123'
-// };
-
-//Dev Only - Admin
-// defaultValue = {
-//   email: 'Brooke.thomas@elevationscu.com',
-//   password: 'abc123'
-// };
+import GWLNlogo from '../../assets/img/gwln_logo.jpg';
+import WorldCouncilLogo from '../../assets/img/WorldCouncil_logo.png';
+import loginCredentials from '../../config/loginCredentials';
 
 const Form = t.form.Form;
 // overriding the text color for every textbox in every form of your app
@@ -132,7 +118,7 @@ class SignIn extends React.Component {
             ref={c => (this._form = c)}
             type={SigninForm}
             options={options}
-            value={defaultValue}
+            value={loginCredentials}
           />
         </View>
         <View style={styles.buttonContainer}>
