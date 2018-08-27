@@ -15,17 +15,13 @@ import '../../config/global';
 class AdminEventDetails extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      attendees: {},
-      numAttendeesLoading: true
-    };
+    this.state = { attendees: {}, numAttendeesLoading: true, numAttendees: 0 };
   }
 
-  DiscardForm = value => {
+  DiscardForm = () => {
     Alert.alert('Delete Event', 'Are you sure you want to delete this event?', [
       {
         text: 'Cancel',
-        onPress: () => console.log('Cancel Pressed'),
         style: 'cancel'
       },
       { text: 'Yes', onPress: this.DeleteEvent }
@@ -53,9 +49,7 @@ class AdminEventDetails extends React.Component {
           haveCurrentEvents: false
         });
       })
-      .catch(error => {
-        console.log(error);
-      });
+      .catch(() => {});
   };
 
   static navigationOptions = ({ navigation }) => {
@@ -76,7 +70,7 @@ class AdminEventDetails extends React.Component {
       )
     };
   };
-  componentDidMount = value => {
+  componentDidMount = () => {
     this.props.navigation.setParams({ discard: this.DiscardForm });
   };
   getEventCheckins = () => {
@@ -103,9 +97,7 @@ class AdminEventDetails extends React.Component {
           this.GetNumberOfAttendees();
         }
       })
-      .catch(error => {
-        console.log(error);
-      });
+      .catch(() => {});
   };
 
   GoToAttendeeList = () => {
@@ -141,18 +133,14 @@ class AdminEventDetails extends React.Component {
   };
   GetNumberOfAttendees = () => {
     let tmpAttendees = this.state.attendees;
-    let tmpNumAttendees = 0;
-    global.numAttendees = 0;
+    let numAttendees = 0;
     for (var i = 0; i < tmpAttendees.length; i++) {
-      tmpNumAttendees = tmpNumAttendees + parseInt(tmpAttendees[i].guests_rsvp);
+      numAttendees += parseInt(tmpAttendees[i].guests_rsvp);
     }
-    global.numAttendees = tmpNumAttendees;
-    this.setState({
-      numAttendeesLoading: false
-    });
+    this.setState({ numAttendeesLoading: false, numAttendees });
   };
 
-  componentWillMount() {
+  componentDidMount() {
     this.getEventCheckins();
   }
   render() {
@@ -162,6 +150,7 @@ class AdminEventDetails extends React.Component {
       event_year,
       event_location
     } = this.props.navigation.state.params.event;
+    const { numAttendees } = this.state;
     return (
       <View style={styles.container}>
         <ScrollView>
@@ -171,7 +160,7 @@ class AdminEventDetails extends React.Component {
             </Text>
             <Text style={styles.infoText}>{event_location} </Text>
             <Text style={styles.infoText}>
-              There are {global.numAttendees} people planning to attend.
+              There are {numAttendees} people planning to attend.
             </Text>
           </View>
           <View style={styles.attendeeContainer}>

@@ -30,32 +30,6 @@ class EventDetails extends React.Component {
     headerRight: <View />
   });
 
-  // retrieveEvent = () => {
-  //   const url = 'https://cuwomen.org/functions/app.gwln.php';
-  //   fetch(url, {
-  //     method: 'POST',
-  //     headers: {
-  //       'X-Token': 'hub46bubg75839jfjsbs8532hs09hurdfy47sbub'
-  //     },
-  //     body: JSON.stringify({
-  //       code: 'getEventByID',
-  //       arguments: {
-  //         timeline_event_id: this.props.navigation.state.params
-  //           .timeline_event_id
-  //       }
-  //     })
-  //   })
-  //     .then(res => res.json())
-  //     .then(res => {
-  //       if (res) {
-  //         this.setState({ data: res });
-  //       }
-  //     })
-  //     .catch(error => {
-  //       console.log(error);
-  //     });
-  // };
-
   _GoToRSVP = () => {
     const { event } = this.props.navigation.state.params;
     let ID = event.timeline_event_id;

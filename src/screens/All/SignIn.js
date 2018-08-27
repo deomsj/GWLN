@@ -39,7 +39,12 @@ var options = {
 };
 
 class SignIn extends React.Component {
-  resetForm = value => {
+  constructor(props) {
+    super(props);
+    this.form = React.createRef();
+  }
+
+  resetForm = () => {
     this.setState({ value: null });
   };
 
@@ -47,7 +52,7 @@ class SignIn extends React.Component {
     header: <View />
   };
 
-  DiscardForm = value => {
+  DiscardForm = () => {
     Alert.alert(
       'Invalid Username or Password',
       'Please try again or forgot password',
@@ -56,7 +61,7 @@ class SignIn extends React.Component {
   };
 
   handleSubmit = () => {
-    const value = this._form.getValue();
+    const value = this.form.current.getValue();
     if (value) {
       const url = 'https://cuwomen.org/functions/app.gwln.php';
       fetch(url, {
@@ -86,9 +91,7 @@ class SignIn extends React.Component {
             this.DiscardForm();
           }
         })
-        .catch(error => {
-          console.log(error);
-        });
+        .catch(() => {});
     }
   };
 
@@ -115,7 +118,7 @@ class SignIn extends React.Component {
         </View>
         <View style={styles.formContainer}>
           <Form
-            ref={c => (this._form = c)}
+            ref={this.form}
             type={SigninForm}
             options={options}
             value={loginCredentials}

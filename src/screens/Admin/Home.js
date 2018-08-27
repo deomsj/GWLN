@@ -6,7 +6,6 @@ import ImgGallery from '../../components/ImgGallery';
 class AdminHome extends React.Component {
   constructor() {
     super();
-    this.inputRefs = {};
     this.state = {
       items: [
         { label: 'My Events', value: 'MyUpcomingEvents' },

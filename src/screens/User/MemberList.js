@@ -7,7 +7,6 @@ import {
   TouchableOpacity
 } from 'react-native';
 import { SearchBar, List, ListItem } from 'react-native-elements';
-import _ from 'lodash';
 
 const contains = ({ first_name, last_name }, query) =>
   first_name.includes(query) || last_name.includes(query);
@@ -25,8 +24,7 @@ class MemberList extends React.Component {
           color: '#002A55'
         }}
       >
-        {' '}
-        Member List{' '}
+        Member List
       </Text>
     ),
     headerRight: <View />
@@ -80,7 +78,6 @@ class MemberList extends React.Component {
         placeholder="Search"
         lightTheme
         round
-        ref={ref => (this.searchBar = ref)}
         onChangeText={this.handleSearch}
         containerStyle={styles.searchBar}
       />

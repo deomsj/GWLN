@@ -20,7 +20,7 @@ class Profile extends React.Component {
           <Text
             style={styles.InfoText}
             onPress={() => {
-              call(phoneArgs).catch(console.error);
+              call(phoneArgs).catch(() => {});
             }}
           >
             {global.currUser.phone_business_main}
@@ -50,7 +50,6 @@ class Profile extends React.Component {
                   [
                     {
                       text: 'Cancel',
-                      onPress: () => console.log('Cancel Pressed'),
                       style: 'cancel'
                     },
                     {

@@ -26,6 +26,8 @@ class CheckIn extends React.Component {
   constructor(props) {
     super(props);
     this.state = { isMember: null, value: null };
+    this.memberForm = React.createRef();
+    this.guestForm = React.createRef();
   }
   static navigationOptions = () => ({
     headerTitle: (
@@ -48,7 +50,7 @@ class CheckIn extends React.Component {
   selectAttendeeType = isMember => this.setState({ isMember });
   wantsToBeContacted = like_to_be => this.setState({ like_to_be });
   onSubmitGuest = () => {
-    const memInfo = this.refs.guestForm.getValue();
+    const memInfo = this.guestForm.current.getValue();
 
     if (memInfo) {
       const eventId = this.props.navigation.state.params.CheckInEventID;
@@ -73,7 +75,7 @@ class CheckIn extends React.Component {
     }
   };
   getMemberInfo = () => {
-    const value = this.refs.memberForm.getValue();
+    const value = this.memberForm.current.getValue();
     if (value) {
       const email = value.email.toLowerCase();
       fetchMemberInfo(email)
@@ -137,7 +139,7 @@ class CheckIn extends React.Component {
       return (
         <View style={styles.formContainer}>
           <Form
-            ref="memberForm"
+            ref={this.memberForm}
             type={memberForm}
             options={MemberOptions}
             value={value}
@@ -156,7 +158,7 @@ class CheckIn extends React.Component {
       return (
         <View style={styles.formContainer}>
           <Form
-            ref="guestForm"
+            ref={this.guestForm}
             type={guestForm}
             options={GuestOptions}
             value={value}

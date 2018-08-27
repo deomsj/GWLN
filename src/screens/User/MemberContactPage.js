@@ -22,7 +22,7 @@ const DEFAULT_PROPS = {
   }
 };
 class MemberContactPage extends React.Component {
-  static navigationOptions = ({ navigation }) => {
+  static navigationOptions = () => {
     return {
       headerStyle: {
         backgroundColor: '#002a55',
@@ -46,8 +46,9 @@ class MemberContactPage extends React.Component {
   };
 
   render() {
+    const { user } = this.props.navigation.state.params;
     const phoneArgs = {
-      number: this.props.navigation.state.params.user.phone_business_main,
+      number: user.phone_business_main,
       prompt: true
     };
     return (
@@ -55,14 +56,12 @@ class MemberContactPage extends React.Component {
         <Image source={GWLNicon} style={styles.profilePic} />
 
         <Text style={styles.NameText}>
-          {' '}
-          {this.props.navigation.state.params.user.first_name}{' '}
-          {this.props.navigation.state.params.user.last_name}
+          {user.first_name} {user.last_name}
         </Text>
         <Text style={styles.locationText}>
-          {' '}
-          {this.props.navigation.state.params.user.mailing_address_city},{' '}
-          {this.props.navigation.state.params.user.mailing_address_country_name}{' '}
+          {user.mailing_address_city}
+          {', '}
+          {user.mailing_address_country_name}
         </Text>
         <ScrollView>
           <View style={styles.ContactContainer}>
@@ -70,19 +69,15 @@ class MemberContactPage extends React.Component {
             <Text
               style={styles.contactText}
               onPress={() => {
-                call(phoneArgs).catch(console.error);
+                call(phoneArgs).catch(() => {});
               }}
             >
-              {this.props.navigation.state.params.user.phone_business_main}
+              {user.phone_business_main}
             </Text>
             <Text style={styles.titleText}>Email:</Text>
-            <Text style={styles.contactText}>
-              {this.props.navigation.state.params.user.email1}{' '}
-            </Text>
+            <Text style={styles.contactText}>{user.email1}</Text>
             <Text style={styles.titleText}>About:</Text>
-            {this.determineAbout(
-              this.props.navigation.state.params.user.additional_info
-            )}
+            {this.determineAbout(user.additional_info)}
           </View>
         </ScrollView>
       </View>

@@ -45,8 +45,6 @@ class GuestRSVP extends React.Component {
   constructor(props) {
     super(props);
     const user = global.currUser || {};
-
-    // member_id: global.crm,
     const value = {
       first_name: user.first_name || '',
       last_name: user.last_name || '',
@@ -54,17 +52,17 @@ class GuestRSVP extends React.Component {
       numGuests: 1
     };
     this.state = { value };
+    this.form = React.createRef();
   }
 
-  resetForm = value => {
+  resetForm = () => {
     this.setState({ value: null });
   };
 
-  DiscardForm = value => {
+  DiscardForm = () => {
     Alert.alert('Discard RSVP', 'Are you sure you want to clear this form?', [
       {
         text: 'Cancel',
-        onPress: () => console.log('Cancel Pressed'),
         style: 'cancel'
       },
       {
@@ -102,12 +100,12 @@ class GuestRSVP extends React.Component {
     };
   };
 
-  componentDidMount = value => {
+  componentDidMount = () => {
     this.props.navigation.setParams({ discard: this.DiscardForm });
   };
 
   handleSubmit = () => {
-    const value = this.refs.form.getValue();
+    const value = this.form.current.getValue();
     if (value) {
       const url = 'https://cuwomen.org/functions/app.gwln.php';
       fetch(url, {
@@ -129,7 +127,6 @@ class GuestRSVP extends React.Component {
         .then(res => res.json())
         .then(res => {
           if (res) {
-            console.log(res);
             Alert.alert('Success', 'You are now registered for this event', [
               {
                 text: 'Return to Calendar',
@@ -138,8 +135,7 @@ class GuestRSVP extends React.Component {
             ]);
           }
         })
-        .catch(error => {
-          console.log(error);
+        .catch(() => {
           Alert.alert('Error', 'Invalid information, please try again', [
             { text: 'Dismiss', onPress: this.resetForm }
           ]);
@@ -152,7 +148,7 @@ class GuestRSVP extends React.Component {
       <KeyboardAvoidingView enabled behavior="padding" style={styles.container}>
         <ScrollView>
           <Form
-            ref="form"
+            ref={this.form}
             style={styles.formContainer}
             type={guest}
             options={options}

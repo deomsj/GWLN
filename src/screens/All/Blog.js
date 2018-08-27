@@ -55,9 +55,7 @@ class Blog extends React.Component {
           data: res
         });
       })
-      .catch(error => {
-        console.log(error);
-      });
+      .catch(() => {});
   };
 
   _renderItem = ({ item }) => (

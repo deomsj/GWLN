@@ -9,14 +9,12 @@ import {
 } from 'react-native';
 import { Button, Icon } from 'react-native-elements';
 import moment from 'moment';
-
-// import a from './Components/alert';
+import _ from 'lodash';
 
 import '../../config/global';
 
 import t from 'tcomb-form-native';
 
-var _ = require('lodash');
 const stylesheet = _.cloneDeep(t.form.Form.stylesheet);
 
 stylesheet.textbox.normal.height = 80;
@@ -60,6 +58,10 @@ var options = {
 };
 
 class CreateEvent extends React.Component {
+  constructor(props) {
+    super(props);
+    this.form = React.createRef();
+  }
   resetForm = () => {
     this.setState({ value: null });
   };
@@ -68,7 +70,6 @@ class CreateEvent extends React.Component {
     Alert.alert('Discard Event', 'Are you sure you want to clear this form?', [
       {
         text: 'Cancel',
-        onPress: () => console.log('Cancel Pressed'),
         style: 'cancel'
       },
       { text: 'Yes', onPress: () => this.resetForm() }
@@ -103,12 +104,12 @@ class CreateEvent extends React.Component {
     };
   };
 
-  componentDidMount = value => {
+  componentDidMount = () => {
     this.props.navigation.setParams({ discard: this.DiscardForm });
   };
 
   handleSubmit = () => {
-    const value = this.refs.form.getValue();
+    const value = this.form.current.getValue();
     if (value) {
       Alert.alert(
         'Create Event',
@@ -116,7 +117,6 @@ class CreateEvent extends React.Component {
         [
           {
             text: 'Cancel',
-            onPress: () => console.log('Cancel Pressed'),
             style: 'cancel'
           },
           { text: 'Yes', onPress: () => this.submit(value) }
@@ -162,13 +162,10 @@ class CreateEvent extends React.Component {
             haveCurrentEvents: false
           });
         } else {
-          console.log('error');
           this.DiscardForm();
         }
       })
-      .catch(error => {
-        console.log(error);
-      });
+      .catch(() => {});
   };
 
   render() {
@@ -177,7 +174,7 @@ class CreateEvent extends React.Component {
         <ScrollView>
           <View style={styles.container}>
             <Form
-              ref="form"
+              ref={this.form}
               type={Event}
               options={options}
               value={{ date: new Date() }}

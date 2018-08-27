@@ -10,11 +10,11 @@ import {
 import { Button } from 'react-native-elements';
 import t from 'tcomb-form-native';
 import { Icon } from 'react-native-elements';
+import _ from 'lodash';
 
 const Form = t.form.Form;
 
 //overriding tcomb textbox
-var _ = require('lodash');
 const stylesheet = _.cloneDeep(t.form.Form.stylesheet);
 
 stylesheet.textbox.normal.height = 200;
@@ -42,20 +42,20 @@ class FeedbackForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = { value: null };
+    this.form = React.createRef();
   }
 
-  resetForm = value => {
+  resetForm = () => {
     this.setState({ value: null });
   };
 
-  DiscardForm = value => {
+  DiscardForm = () => {
     Alert.alert(
       'Discard Feedback',
       'Are you sure you want to clear this form?',
       [
         {
           text: 'Cancel',
-          onPress: () => console.log('Cancel Pressed'),
           style: 'cancel'
         },
         { text: 'Yes', onPress: () => this.resetForm() }
@@ -91,12 +91,12 @@ class FeedbackForm extends React.Component {
     };
   };
 
-  componentDidMount = value => {
+  componentDidMount = () => {
     this.props.navigation.setParams({ discard: this.DiscardForm });
   };
 
   handleSubmit = () => {
-    const value = this._form.getValue();
+    const value = this.form.current.getValue();
     if (value) {
       Alert.alert(
         'Submit Feedback',
@@ -104,7 +104,6 @@ class FeedbackForm extends React.Component {
         [
           {
             text: 'Cancel',
-            onPress: () => console.log('Cancel Pressed'),
             style: 'cancel'
           },
           { text: 'Yes', onPress: () => this.submit(value) }
@@ -128,19 +127,12 @@ class FeedbackForm extends React.Component {
         }
       })
     })
-      .then(res => res.json())
       .then(res => {
-        if (res) {
-          this.resetForm({});
+        if (res.json()) {
           this.props.navigation.navigate('Admin');
-        } else {
-          console.log('error');
-          this.DiscardForm();
         }
       })
-      .catch(error => {
-        console.log(error);
-      });
+      .catch(() => {});
   };
 
   render() {
@@ -148,7 +140,7 @@ class FeedbackForm extends React.Component {
       <View style={styles.container}>
         <ScrollView>
           <Form
-            ref={c => (this._form = c)}
+            ref={this.form}
             type={Content}
             style={styles.formContainer}
             options={Options}

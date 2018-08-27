@@ -40,7 +40,7 @@ class BlogPost extends React.Component {
     };
   };
 
-  componentDidMount = value => {
+  componentDidMount = () => {
     this.props.navigation.setParams({
       renderDeleteIcon: this.renderDeleteIcon(),
       confirmDeleteIntent: this.confirmDeleteIntent
@@ -63,7 +63,6 @@ class BlogPost extends React.Component {
       [
         {
           text: 'Cancel',
-          onPress: () => console.log('Cancel Pressed'),
           style: 'cancel'
         },
         { text: 'Yes', onPress: this.DeleteBlogPost }
@@ -93,9 +92,7 @@ class BlogPost extends React.Component {
           postsUpdated: true
         });
       })
-      .catch(error => {
-        console.log(error);
-      });
+      .catch(() => {});
   };
 
   render() {

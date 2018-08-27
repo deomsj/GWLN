@@ -3,6 +3,7 @@ import { StyleSheet, Text, View, Image } from 'react-native';
 import { createBottomTabNavigator } from 'react-navigation';
 import { Icon } from 'react-native-elements';
 
+import * as Icons from '../../components/Icons';
 import GWLNlogo from '../../assets/img/gwln_logo.jpg';
 import Donate from '../All/Donate';
 import Profile from '../User/Profile';
@@ -15,36 +16,28 @@ const Admin = createBottomTabNavigator({
     screen: AdminHome,
     navigationOptions: {
       tabBarLabel: 'Home',
-      tabBarIcon: ({ tintColor }) => (
-        <Icon name="home" color={tintColor} size={30} />
-      )
+      tabBarIcon: Icons.Home
     }
   },
   Profile: {
     screen: Profile,
     navigationOptions: {
       tabBarLabel: 'Profile',
-      tabBarIcon: ({ tintColor }) => (
-        <Icon type="font-awesome" name="user" color={tintColor} size={30} />
-      )
+      tabBarIcon: Icons.Profile
     }
   },
   EventCalendar: {
     screen: EventCalendar,
     navigationOptions: {
       title: 'Calendar',
-      tabBarIcon: ({ tintColor }) => (
-        <Icon type="font-awesome" name="calendar" color={tintColor} size={27} />
-      )
+      tabBarIcon: Icons.Calendar
     }
   },
   GWLN: {
     screen: Donate,
     navigationOptions: {
       title: 'Donate',
-      tabBarIcon: ({ tintColor }) => (
-        <Icon type="font-awesome" name="dollar" color={tintColor} size={27} />
-      )
+      tabBarIcon: Icons.Donate
     }
   }
 });

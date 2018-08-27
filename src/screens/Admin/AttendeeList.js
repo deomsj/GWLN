@@ -52,10 +52,7 @@ class AttendeeList extends React.Component {
     Alert.alert(
       'Export Attendee List',
       'Are you sure you want to email a CSV of attendees to the event creator?',
-      [
-        { text: 'Yes', onPress: this.ExportAttendeeList },
-        { text: 'Cancel', onPress: () => console.log('Cancel Pressed') }
-      ]
+      [{ text: 'Yes', onPress: this.ExportAttendeeList }, { text: 'Cancel' }]
     );
   };
 
@@ -72,14 +69,7 @@ class AttendeeList extends React.Component {
           timeline_event_id: this.props.navigation.state.params.ID
         }
       })
-    })
-      .then(res => res.json())
-      .then(res => {
-        console.log(res ? 'Success' : 'Error');
-      })
-      .catch(error => {
-        console.log(error);
-      });
+    }).catch(() => {});
   };
 
   _toggleDisplay = () => {
@@ -124,9 +114,7 @@ class AttendeeList extends React.Component {
           this.setState({ checkedIn, RSVP, totals });
         }
       })
-      .catch(error => {
-        console.log(error);
-      });
+      .catch(() => {});
   };
 
   _renderCheckedIn = ({ item }) => this._renderItem(item, 'guests_checkin');

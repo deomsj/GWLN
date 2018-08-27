@@ -14,7 +14,6 @@ class EventCalendar extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      data: {},
       _eventsByDate: {},
       _selectedDate: moment().format('dddd, MMMM Do'),
       _selectedEvents: []
@@ -37,22 +36,19 @@ class EventCalendar extends React.Component {
       })
     })
       .then(res => res.json())
-      .then(res => {
+      .then(events => {
         this.props.navigation.setParams({ haveCurrentEvents: true });
-        if (res) {
-          this.state.data = res;
-          this.sortEvents();
+        if (events) {
+          this.sortEvents(events);
         }
       })
-      .catch(error => {
-        console.log(error);
-      });
+      .catch(() => {});
   };
 
-  sortEvents = () => {
+  sortEvents = events => {
     let _markedDates = {};
     let _eventsByDate = {};
-    this.state.data.forEach(event => {
+    events.forEach(event => {
       const { event_day, event_month, event_year } = event;
       if (event_day && event_month && event_year) {
         const shortHandDate = `${event_year}-${event_month}-${event_day}`;

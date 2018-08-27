@@ -10,11 +10,11 @@ import {
 } from 'react-native';
 import { Button, Icon } from 'react-native-elements';
 import t from 'tcomb-form-native';
+import _ from 'lodash';
 
 const Form = t.form.Form;
 
 //overriding tcomb textbox
-var _ = require('lodash');
 const stylesheet = _.cloneDeep(t.form.Form.stylesheet);
 
 stylesheet.textbox.normal.height = 200;
@@ -46,11 +46,15 @@ const Options = {
 };
 
 class NewBlogPost extends React.Component {
+  constructor(props) {
+    super(props);
+    this.form = React.createRef();
+  }
+
   DiscardForm = () => {
     Alert.alert('Discard Post', 'Are you sure you want to clear this form?', [
       {
         text: 'Cancel',
-        onPress: () => console.log('Cancel Pressed'),
         style: 'cancel'
       },
       { text: 'Yes', onPress: () => this.props.navigation.navigate('Blog') }
@@ -86,12 +90,12 @@ class NewBlogPost extends React.Component {
     };
   };
 
-  componentDidMount = value => {
+  componentDidMount = () => {
     this.props.navigation.setParams({ discard: this.DiscardForm });
   };
 
   handleSubmit = () => {
-    const value = this._form.getValue();
+    const value = this.form.current.getValue();
     if (value && value.PostTitle && value.Post) {
       Alert.alert(
         'Submit Post',
@@ -99,7 +103,6 @@ class NewBlogPost extends React.Component {
         [
           {
             text: 'Cancel',
-            onPress: () => console.log('Cancel Pressed'),
             style: 'cancel'
           },
           { text: 'Yes', onPress: () => this.submit(value) }
@@ -128,9 +131,7 @@ class NewBlogPost extends React.Component {
       .then(() => {
         this.props.navigation.navigate('Blog');
       })
-      .catch(error => {
-        console.log(error);
-      });
+      .catch(() => {});
   };
 
   render() {
@@ -143,11 +144,7 @@ class NewBlogPost extends React.Component {
       >
         <ScrollView>
           <View style={styles.container}>
-            <Form
-              ref={c => (this._form = c)}
-              type={Content}
-              options={Options}
-            />
+            <Form ref={this.form} type={Content} options={Options} />
             <View style={styles.buttonContainer}>
               <Button
                 title="Submit"

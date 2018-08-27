@@ -89,9 +89,7 @@ class MyUpcomingEvents extends React.Component {
         });
         this.GetMyEvents();
       })
-      .catch(error => {
-        console.log(error);
-      });
+      .catch(() => {});
   };
 
   GetMyEvents = () => {
