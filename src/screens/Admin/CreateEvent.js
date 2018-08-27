@@ -11,8 +11,6 @@ import { Button, Icon } from 'react-native-elements';
 import moment from 'moment';
 import _ from 'lodash';
 
-import '../../config/global';
-
 import t from 'tcomb-form-native';
 
 const stylesheet = _.cloneDeep(t.form.Form.stylesheet);

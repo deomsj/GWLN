@@ -2,7 +2,7 @@
 //  - set set loginCredentials for testing app as different types of users
 
 const member = false;
-const eventAdmin = true;
+const eventAdmin = false;
 
 // Default: Not Signed In
 let loginCredentials = {};

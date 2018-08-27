@@ -2,7 +2,6 @@ import React from 'react';
 import { StyleSheet, Text, View, Image, Platform, Alert } from 'react-native';
 import { Button } from 'react-native-elements';
 import GWLNicon from '../../assets/img/Gwln_Icon.jpg';
-import '../../config/global';
 
 import call from 'react-native-phone-call';
 

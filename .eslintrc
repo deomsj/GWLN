@@ -30,6 +30,7 @@
     "global": true,
     "it": false,
     "expect": false,
-    "describe": false
+    "describe": false,
+    "console": true
   }
 }

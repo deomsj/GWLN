@@ -8,7 +8,6 @@ import Donate from '../All/Donate';
 import Profile from '../User/Profile';
 import EventCalendar from '../All/EventCalendar';
 import MemberHome from './Home';
-import '../../config/global';
 
 const Member = createBottomTabNavigator({
   Home: {

@@ -7,5 +7,8 @@ const NavigationFlow = createStackNavigator(routes, {
 
 export default NavigationFlow;
 
+// During a session, the user's information is stored here
+global.currUser = null;
+
 // During Testing: hide warnings from expo client app and simulator
 console.disableYellowBox = true;

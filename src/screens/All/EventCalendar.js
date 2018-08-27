@@ -18,7 +18,6 @@ class EventCalendar extends React.Component {
       _selectedDate: moment().format('dddd, MMMM Do'),
       _selectedEvents: []
     };
-    global.EventArray = [];
   }
 
   retrieveEvents = () => {
@@ -108,7 +107,9 @@ class EventCalendar extends React.Component {
               />
             ))
           ) : (
-            <Text style={styles.NoEvents}>No Events</Text>
+            <Text style={styles.NoEvents} key="none">
+              No Events
+            </Text>
           )}
         </List>
       </View>

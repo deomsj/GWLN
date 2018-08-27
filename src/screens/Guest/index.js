@@ -7,7 +7,6 @@ import GWLNlogo from '../../assets/img/gwln_logo.jpg';
 import Donate from '../All/Donate';
 import EventCalendar from '../All/EventCalendar';
 import GuestHome from './Home';
-import '../../config/global';
 
 const Guest = createBottomTabNavigator({
   Home: {

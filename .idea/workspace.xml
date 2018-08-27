@@ -2,14 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ed386644-8da1-4057-96dc-1be188fd2dd6" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/views/Admin/AdminEventDetails.js" afterPath="$PROJECT_DIR$/views/Admin/AdminEventDetails.js" />
-      <change beforePath="$PROJECT_DIR$/views/Admin/AttendeeList.js" afterPath="$PROJECT_DIR$/views/Admin/AttendeeList.js" />
-      <change beforePath="$PROJECT_DIR$/views/Admin/CreateEvent.js" afterPath="$PROJECT_DIR$/views/Admin/CreateEvent.js" />
-      <change beforePath="$PROJECT_DIR$/views/Admin/FeedbackForm.js" afterPath="$PROJECT_DIR$/views/Admin/FeedbackForm.js" />
-      <change beforePath="$PROJECT_DIR$/views/All/BlogPost.js" afterPath="$PROJECT_DIR$/views/All/BlogPost.js" />
-      <change beforePath="$PROJECT_DIR$/views/All/SignIn.js" afterPath="$PROJECT_DIR$/views/All/SignIn.js" />
-      <change beforePath="$PROJECT_DIR$/views/Guest/index.js" afterPath="$PROJECT_DIR$/views/Guest/index.js" />
-      <change beforePath="$PROJECT_DIR$/views/User/NewBlogPost.js" afterPath="$PROJECT_DIR$/views/User/NewBlogPost.js" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change beforePath="$PROJECT_DIR$/src/screens/All/EventCalendar.js" afterPath="$PROJECT_DIR$/src/screens/All/EventCalendar.js" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -47,11 +41,11 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="ProjectPane" />
-      <pane id="Scratches" />
-      <pane id="PackagesPane" />
       <pane id="AndroidView" />
+      <pane id="ProjectPane" />
       <pane id="Scope" />
+      <pane id="PackagesPane" />
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">

@@ -1,1 +1,0 @@
-global.currUser = null;

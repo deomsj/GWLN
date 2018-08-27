@@ -9,7 +9,6 @@ import Donate from '../All/Donate';
 import Profile from '../User/Profile';
 import EventCalendar from '../All/EventCalendar';
 import AdminHome from './Home';
-import '../../config/global';
 
 const Admin = createBottomTabNavigator({
   Home: {
@@ -48,7 +47,8 @@ Admin.navigationOptions = ({ navigation }) => {
   if (routeName === 'Home') {
     return {
       headerTitle: <Image source={GWLNlogo} style={styles.GWLNlogo} />,
-      headerLeft: <View />
+      headerLeft: <View />,
+      headerRight: <View />
     };
   } else if (routeName === 'Profile') {
     return {
@@ -71,7 +71,8 @@ Admin.navigationOptions = ({ navigation }) => {
           {global.currUser.first_name} {global.currUser.last_name}
         </Text>
       ),
-      headerLeft: <View />
+      headerLeft: <View />,
+      headerRight: <View />
     };
   } else if (routeName === 'EventCalendar') {
     return {

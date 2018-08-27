@@ -12,7 +12,6 @@ import { Button } from 'react-native-elements';
 import t from 'tcomb-form-native';
 import Radio from './Radio';
 import { fetchMemberInfo, fetchEventCheckIn } from './Services';
-import '../../../config/global';
 import {
   guestForm,
   GuestOptions,
