@@ -1,11 +1,64 @@
 EventData = {
-	"Events": [
-		{"timeline_event_id": 1, "event_name": "watsons birthday party", "event_day": "21", "event_month": "07", "event_year": "2018", "event_description": "its watsons birthday come eat chicken nuggets!", "is_deleted": false, "username": "watsonsHooman"},
-		{"timeline_event_id": 2, "event_name": "playing with dogs", "event_day": "23", "event_month": "07", "event_year": "2018", "event_description": "playing with dogs you dont want to miss this!", "is_deleted": false, "username": "watsontheDog"},
-		{"timeline_event_id": 3, "event_name": "walking squish", "event_day": "25", "event_month": "07", "event_year": "2018", "event_description": "taking jefferson for a walk because he's gotten very chubby its cute but not healthy", "is_deleted": false, "username": "BigSquish"},
-		{"timeline_event_id": 4, "event_name": "Dog Park", "event_day": "26", "event_month": "07", "event_year": "2018", "event_description": "Taking watson and jefferson to the dog park so they can go and play with all their friendos", "is_deleted": false, "username": "Doggo123"},
-		{"timeline_event_id": 5, "event_name": "test", "event_day": "21", "event_month": "10", "event_year": "2018", "event_description": "test", "is_deleted": false, "username": "1"},
-		{"timeline_event_id": 6, "event_name": "seeing coco and lulu", "event_day": "27", "event_month": "7", "event_year": "2018", "event_description": "seeing the two mini doggos", "is_deleted": false, "username": "watson"},
+	"Events": [{
+			"timeline_event_id": 1,
+			"event_name": "watsons birthday party",
+			"event_day": "21",
+			"event_month": "07",
+			"event_year": "2018",
+			"event_description": "its watsons birthday come eat chicken nuggets!",
+			"is_deleted": false,
+			"username": "watsonsHooman"
+		},
+		{
+			"timeline_event_id": 2,
+			"event_name": "playing with dogs",
+			"event_day": "23",
+			"event_month": "07",
+			"event_year": "2018",
+			"event_description": "playing with dogs you dont want to miss this!",
+			"is_deleted": false,
+			"username": "watsontheDog"
+		},
+		{
+			"timeline_event_id": 3,
+			"event_name": "walking squish",
+			"event_day": "25",
+			"event_month": "07",
+			"event_year": "2018",
+			"event_description": "taking jefferson for a walk because he's gotten very chubby its cute but not healthy",
+			"is_deleted": false,
+			"username": "BigSquish"
+		},
+		{
+			"timeline_event_id": 4,
+			"event_name": "Dog Park",
+			"event_day": "26",
+			"event_month": "07",
+			"event_year": "2018",
+			"event_description": "Taking watson and jefferson to the dog park so they can go and play with all their friendos",
+			"is_deleted": false,
+			"username": "Doggo123"
+		},
+		{
+			"timeline_event_id": 5,
+			"event_name": "test",
+			"event_day": "21",
+			"event_month": "10",
+			"event_year": "2018",
+			"event_description": "test",
+			"is_deleted": false,
+			"username": "1"
+		},
+		{
+			"timeline_event_id": 6,
+			"event_name": "seeing coco and lulu",
+			"event_day": "27",
+			"event_month": "7",
+			"event_year": "2018",
+			"event_description": "seeing the two mini doggos",
+			"is_deleted": false,
+			"username": "watson"
+		},
 
 	]
 };

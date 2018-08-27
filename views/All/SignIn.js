@@ -17,10 +17,10 @@ import WorldCouncilLogo from '../../img/WorldCouncil_logo.png';
 let defaultValue = {};
 
 //Dev Only - Member
-// defaultValue = {
-//   email: 'angie.mccurdy@elevationscu.com',
-//   password: 'abc123'
-// };
+defaultValue = {
+  email: 'angie.mccurdy@elevationscu.com',
+  password: 'abc123'
+};
 
 //Dev Only - Admin
 // defaultValue = {
@@ -58,7 +58,7 @@ class SignIn extends React.Component {
   };
 
   static navigationOptions = {
-    header: null
+    header: <View />
   };
 
   DiscardForm = value => {
@@ -91,7 +91,7 @@ class SignIn extends React.Component {
           if (res != false) {
             global.currUser = res;
             console.log('global.currUser Logged In!!!!!!!', global.currUser);
-            if (global.currUser.is_event_admin) {
+            if (global.currUser.is_event_admin === 't') {
               this.props.navigation.navigate('Admin');
             } else {
               this.props.navigation.navigate('Member');

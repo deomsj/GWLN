@@ -1,3 +1,4 @@
+ // ADMIN Example
  {
    "additional_info": null,
    "bio_doc": null,
@@ -7,7 +8,7 @@
    "expired": "f",
    "expires": "2019-03-09 00:00:00",
    "first_name": "Brooke",
-   "is_event_admin": "f",
+   "is_event_admin": "t",
    "last_name": "Thomas",
    "mailing_address_city": "Longmont",
    "mailing_address_country": "221",
@@ -28,6 +29,7 @@
    "username": "brooke.thomas@elevationscu.com"
  }
 
+ // Member Example
  {
    "additional_info": null,
    "bio_doc": null,

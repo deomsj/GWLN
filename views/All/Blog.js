@@ -95,7 +95,9 @@ class Blog extends React.Component {
           name="edit"
           onPress={navigation.getParam('goToAdd')}
         />
-      ) : null
+      ) : (
+        <View />
+      )
     };
   };
 

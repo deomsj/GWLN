@@ -7,9 +7,9 @@ import '../../global';
 class EventDetails extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      data: {}
-    };
+    // this.state = {
+    //   data: {}
+    // };
   }
 
   static navigationOptions = () => ({
@@ -26,44 +26,41 @@ class EventDetails extends React.Component {
       >
         Event Details
       </Text>
-    )
+    ),
+    headerRight: <View />
   });
 
-  retrieveEvent = () => {
-    const url = 'https://cuwomen.org/functions/app.gwln.php';
-    fetch(url, {
-      method: 'POST',
-      headers: {
-        'X-Token': 'hub46bubg75839jfjsbs8532hs09hurdfy47sbub'
-      },
-      body: JSON.stringify({
-        code: 'getEventByID',
-        arguments: {
-          timeline_event_id: this.props.navigation.state.params.filteredID
-        }
-      })
-    })
-      .then(res => res.json())
-      .then(res => {
-        if (res) {
-          this.setState({
-            data: res
-          });
-        }
-      })
-      .catch(error => {
-        console.log(error);
-      });
-  };
+  // retrieveEvent = () => {
+  //   const url = 'https://cuwomen.org/functions/app.gwln.php';
+  //   fetch(url, {
+  //     method: 'POST',
+  //     headers: {
+  //       'X-Token': 'hub46bubg75839jfjsbs8532hs09hurdfy47sbub'
+  //     },
+  //     body: JSON.stringify({
+  //       code: 'getEventByID',
+  //       arguments: {
+  //         timeline_event_id: this.props.navigation.state.params
+  //           .timeline_event_id
+  //       }
+  //     })
+  //   })
+  //     .then(res => res.json())
+  //     .then(res => {
+  //       if (res) {
+  //         this.setState({ data: res });
+  //       }
+  //     })
+  //     .catch(error => {
+  //       console.log(error);
+  //     });
+  // };
 
   _GoToRSVP = () => {
-    let ID = this.state.data.timeline_event_id;
+    const { event } = this.props.navigation.state.params;
+    let ID = event.timeline_event_id;
     this.props.navigation.navigate('RSVP', { ID });
   };
-
-  componentDidMount() {
-    this.retrieveEvent();
-  }
   render() {
     const {
       event_name,
@@ -72,7 +69,7 @@ class EventDetails extends React.Component {
       event_year,
       location,
       event_description
-    } = this.state.data;
+    } = this.props.navigation.state.params.event;
     return (
       <View style={styles.container}>
         <ScrollView>

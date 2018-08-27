@@ -2,8 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ed386644-8da1-4057-96dc-1be188fd2dd6" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/app.json" afterPath="$PROJECT_DIR$/app.json" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change beforePath="$PROJECT_DIR$/mock-database/user.json" afterPath="$PROJECT_DIR$/mock-database/user.json" />
+      <change beforePath="$PROJECT_DIR$/mock-database/www_timeline_events.json" afterPath="$PROJECT_DIR$/mock-database/www_timeline_events.json" />
+      <change beforePath="$PROJECT_DIR$/views/Admin/AdminEventDetails.js" afterPath="$PROJECT_DIR$/views/Admin/AdminEventDetails.js" />
+      <change beforePath="$PROJECT_DIR$/views/All/BlogPost.js" afterPath="$PROJECT_DIR$/views/All/BlogPost.js" />
+      <change beforePath="$PROJECT_DIR$/views/All/EventCalendar.js" afterPath="$PROJECT_DIR$/views/All/EventCalendar.js" />
+      <change beforePath="$PROJECT_DIR$/views/All/EventDetails.js" afterPath="$PROJECT_DIR$/views/All/EventDetails.js" />
       <change beforePath="$PROJECT_DIR$/views/All/SignIn.js" afterPath="$PROJECT_DIR$/views/All/SignIn.js" />
+      <change beforePath="$PROJECT_DIR$/views/User/MyUpcomingEvents.js" afterPath="$PROJECT_DIR$/views/User/MyUpcomingEvents.js" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -42,10 +49,10 @@
     </navigator>
     <panes>
       <pane id="Scope" />
-      <pane id="Scratches" />
       <pane id="PackagesPane" />
-      <pane id="AndroidView" />
       <pane id="ProjectPane" />
+      <pane id="Scratches" />
+      <pane id="AndroidView" />
     </panes>
   </component>
   <component name="PropertiesComponent">

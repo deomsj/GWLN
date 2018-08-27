@@ -34,15 +34,19 @@ class BlogPost extends React.Component {
           name="trash"
           onPress={navigation.getParam('deletePost')}
         />
-      ) : null
+      ) : (
+        <View />
+      )
     };
   };
 
+  allowDelete = () => {};
+
   componentDidMount = value => {
-    this.props.navigation.setParams({ deletePost: this.deletePost });
+    this.props.navigation.setParams({ deletePost: this.confirmDeleteIntent });
   };
 
-  deletePost = () => {
+  confirmDeleteIntent = () => {
     Alert.alert(
       'Delete Blog Post',
       'Are you sure you want to delete this blog post?',
@@ -85,6 +89,7 @@ class BlogPost extends React.Component {
   };
 
   render() {
+    console.log('post: ', this.props.navigation.state.params.post);
     return (
       <View style={styles.mainContainer}>
         <View style={styles.cardContainer}>

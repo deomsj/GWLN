@@ -55,7 +55,7 @@ Admin.navigationOptions = ({ navigation }) => {
   if (routeName === 'Home') {
     return {
       headerTitle: <Image source={GWLNlogo} style={styles.GWLNlogo} />,
-      headerLeft: null
+      headerLeft: <View />
     };
   } else if (routeName === 'Profile') {
     return {
@@ -78,11 +78,11 @@ Admin.navigationOptions = ({ navigation }) => {
           {global.currUser.first_name} {global.currUser.last_name}
         </Text>
       ),
-      headerLeft: null
+      headerLeft: <View />
     };
   } else if (routeName === 'EventCalendar') {
     return {
-      headerLeft: null,
+      headerLeft: <View />,
       headerTitle: (
         <Text
           style={{
@@ -123,7 +123,8 @@ Admin.navigationOptions = ({ navigation }) => {
           Help Support Our Cause
         </Text>
       ),
-      headerLeft: null
+      headerLeft: <View />,
+      headerRight: <View />
     };
   }
   return {

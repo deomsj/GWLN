@@ -49,11 +49,11 @@ class MyUpcomingEvents extends React.Component {
     );
   };
 
-  _onPressItem = item => {
-    if (global.currUser.is_event_admin) {
-      this.props.navigation.navigate('AdminEventDetails', { item });
+  _onPressItem = event => {
+    if (global.currUser.is_event_admin === 't') {
+      this.props.navigation.navigate('AdminEventDetails', { event });
     } else {
-      this.props.navigation.navigate('EventDetails', { item });
+      this.props.navigation.navigate('EventDetails', { event });
     }
   };
 

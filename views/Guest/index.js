@@ -80,10 +80,11 @@ Guest.navigationOptions = ({ navigation }) => {
           }}
         >
           {' '}
-          Help Support Our Cause{' '}
+          Help Support Our Cause
         </Text>
       ),
-      headerLeft: null
+      headerLeft: <View />,
+      headerRight: <View />
     };
   }
   return {

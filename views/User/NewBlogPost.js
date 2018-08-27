@@ -132,8 +132,7 @@ class NewBlogPost extends React.Component {
     })
       .then(res => res.json())
       .then(() => {
-        // this.resetForm({});
-        this.props.navigation.navigate('BlogPostList');
+        this.props.navigation.navigate('Blog');
       })
       .catch(error => {
         console.log(error);
@@ -194,17 +193,6 @@ const styles = StyleSheet.create({
   },
   buttonContainer: {
     alignSelf: 'center',
-    backgroundColor: '#002A55',
-    ...Platform.select({
-      ios: {
-        borderColor: '#002A55'
-      },
-      android: {
-        borderColor: 'white'
-      }
-    }),
-    borderWidth: 1,
-    borderRadius: 5,
     flexDirection: 'column'
   },
   button: {

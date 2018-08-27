@@ -16,7 +16,6 @@ class EventCalendar extends React.Component {
     this.state = {
       data: {},
       _eventsByDate: {},
-      _markedDates: {},
       _selectedDate: moment().format('dddd, MMMM Do'),
       _selectedEvents: []
     };
@@ -55,11 +54,12 @@ class EventCalendar extends React.Component {
     let _eventsByDate = {};
     this.state.data.forEach(event => {
       const { event_day, event_month, event_year } = event;
-      var day = event_day.padStart(2, '0');
-      var month = event_month.padStart(2, '0');
-      const date = `${event_year}-${month}-${day}`;
-      _markedDates[date] = { marked: true };
-      _eventsByDate[date] = (_eventsByDate[date] || []).concat(event);
+      if (event_day && event_month && event_year) {
+        const shortHandDate = `${event_year}-${event_month}-${event_day}`;
+        const date = moment(shortHandDate, 'YYYY-M-D').format('YYYY-MM-DD');
+        _markedDates[date] = { marked: true };
+        _eventsByDate[date] = (_eventsByDate[date] || []).concat(event);
+      }
     });
     const today = moment().format(_format);
     const _selectedEvents = _eventsByDate[today] || [];
@@ -73,10 +73,7 @@ class EventCalendar extends React.Component {
   };
 
   goToEventDetails = event => {
-    let filteredID = event.timeline_event_id;
-    this.props.navigation.navigate('EventDetails', {
-      filteredID
-    });
+    this.props.navigation.navigate('EventDetails', { event });
   };
 
   componentDidMount() {
@@ -101,7 +98,6 @@ class EventCalendar extends React.Component {
           maxDate={_maxDate}
           onDayPress={this.onDaySelect}
           markedDates={_markedDates}
-          markingType={'interactive'}
         />
         <Text style={styles.Date}>{_selectedDate}</Text>
         <List style={styles.List}>

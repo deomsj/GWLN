@@ -88,8 +88,7 @@ class CreateEvent extends React.Component {
             color: '#002A55'
           }}
         >
-          {' '}
-          Create an Event{' '}
+          Create an Event
         </Text>
       ),
       headerRight: (

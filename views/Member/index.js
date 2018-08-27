@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, Image } from 'react-native';
+import { StyleSheet, Text, Image, View } from 'react-native';
 import { createBottomTabNavigator } from 'react-navigation';
 import { Icon } from 'react-native-elements';
 
@@ -56,7 +56,8 @@ Member.navigationOptions = ({ navigation }) => {
   if (routeName === 'Home') {
     return {
       headerTitle: <Image source={GWLNlogo} style={styles.GWLNlogo} />,
-      headerLeft: null
+      headerLeft: <View />,
+      headerRight: <View />
     };
   } else if (routeName === 'Profile') {
     return {
@@ -74,7 +75,8 @@ Member.navigationOptions = ({ navigation }) => {
           {global.currUser.first_name} {global.currUser.last_name}
         </Text>
       ),
-      headerLeft: null
+      headerLeft: <View />,
+      headerRight: <View />
     };
   } else if (routeName === 'EventCalendar') {
     return {
@@ -92,7 +94,8 @@ Member.navigationOptions = ({ navigation }) => {
           Event Calendar
         </Text>
       ),
-      headerLeft: null
+      headerLeft: <View />,
+      headerRight: <View />
     };
   } else if (routeName === 'GWLN') {
     return {
@@ -110,7 +113,8 @@ Member.navigationOptions = ({ navigation }) => {
           Help Support Our Cause
         </Text>
       ),
-      headerLeft: null
+      headerLeft: <View />,
+      headerRight: <View />
     };
   }
   return {

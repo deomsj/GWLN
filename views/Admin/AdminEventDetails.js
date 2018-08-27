@@ -10,15 +10,12 @@ import {
 } from 'react-native';
 import { Button, Icon } from 'react-native-elements';
 import { ListItem } from 'react-native-elements';
-import contactData from '../../mock-database/crm.contacts.json';
 import '../../global';
 
 class AdminEventDetails extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      data: {},
-      memInfo: contactData,
       attendees: {},
       numAttendeesLoading: true
     };
@@ -45,7 +42,7 @@ class AdminEventDetails extends React.Component {
       body: JSON.stringify({
         code: 'deleteEvent',
         arguments: {
-          timeline_event_id: this.props.navigation.state.params.item
+          timeline_event_id: this.props.navigation.state.params.event
             .timeline_event_id
         }
       })
@@ -65,7 +62,7 @@ class AdminEventDetails extends React.Component {
     return {
       headerTitle: (
         <Text style={styles.headerTitle}>
-          {navigation.state.params.item.event_name}
+          {navigation.state.params.event.event_name}
         </Text>
       ),
       headerRight: (
@@ -82,7 +79,7 @@ class AdminEventDetails extends React.Component {
   componentDidMount = value => {
     this.props.navigation.setParams({ discard: this.DiscardForm });
   };
-  retrieveEvent = () => {
+  getEventCheckins = () => {
     const url = 'https://cuwomen.org/functions/app.gwln.php';
     fetch(url, {
       method: 'POST',
@@ -92,7 +89,7 @@ class AdminEventDetails extends React.Component {
       body: JSON.stringify({
         code: 'getEventCheckins',
         arguments: {
-          timeline_event_id: this.props.navigation.state.params.item
+          timeline_event_id: this.props.navigation.state.params.event
             .timeline_event_id
         }
       })
@@ -112,7 +109,7 @@ class AdminEventDetails extends React.Component {
   };
 
   GoToAttendeeList = () => {
-    let ID = this.props.navigation.state.params.item.timeline_event_id;
+    let ID = this.props.navigation.state.params.event.timeline_event_id;
     this.props.navigation.navigate('AttendeeList', { ID });
   };
 
@@ -128,7 +125,7 @@ class AdminEventDetails extends React.Component {
   );
 
   goToCheckIn = () => {
-    let CheckInEventID = this.props.navigation.state.params.item
+    let CheckInEventID = this.props.navigation.state.params.event
       .timeline_event_id;
     this.props.navigation.navigate('CheckIn', { CheckInEventID });
   };
@@ -156,30 +153,30 @@ class AdminEventDetails extends React.Component {
   };
 
   componentWillMount() {
-    this.retrieveEvent();
+    this.getEventCheckins();
   }
   render() {
+    console.log('event', this.props.navigation.state.params.event);
+    const {
+      event_month,
+      event_day,
+      event_year,
+      event_location
+    } = this.props.navigation.state.params.event;
     return (
       <View style={styles.container}>
         <ScrollView>
           <View style={styles.heading}>
             <Text style={styles.infoText}>
-              {this.props.navigation.state.params.item.event_month}/
-              {this.props.navigation.state.params.item.event_day}/
-              {this.props.navigation.state.params.item.event_year}{' '}
+              {event_month}/{event_day}/{event_year}
             </Text>
+            <Text style={styles.infoText}>{event_location} </Text>
             <Text style={styles.infoText}>
-              {this.props.navigation.state.params.item.event_location}{' '}
-            </Text>
-            <Text style={styles.infoText}>
-              There are {global.numAttendees} people planning to attend.{' '}
+              There are {global.numAttendees} people planning to attend.
             </Text>
           </View>
           <View style={styles.attendeeContainer}>
-            <Text
-              style={styles.attendeeButton}
-              onPress={() => this.GoToAttendeeList()}
-            >
+            <Text style={styles.attendeeButton} onPress={this.GoToAttendeeList}>
               View Attendees
             </Text>
           </View>
@@ -187,7 +184,7 @@ class AdminEventDetails extends React.Component {
             <Button
               buttonStyle={styles.button}
               title="Begin Check In"
-              onPress={() => this.goToCheckIn()}
+              onPress={this.goToCheckIn}
             />
           </View>
         </ScrollView>
