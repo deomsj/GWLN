@@ -46,12 +46,6 @@ const Options = {
 };
 
 class NewBlogPost extends React.Component {
-  makeRemoteRequest = () => {};
-
-  resetForm = () => {
-    this.setState({ value: null });
-  };
-
   DiscardForm = () => {
     Alert.alert('Discard Post', 'Are you sure you want to clear this form?', [
       {
@@ -126,7 +120,7 @@ class NewBlogPost extends React.Component {
         arguments: {
           title: value.PostTitle,
           story: value.Post,
-          username: global.currUser.email1
+          username: global.currUser.username
         }
       })
     })

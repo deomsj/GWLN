@@ -26,13 +26,13 @@ class BlogPost extends React.Component {
           Post Details
         </Text>
       ),
-      headerRight: (global.currUser || {}).is_event_admin ? (
+      headerRight: navigation.getParam('renderDeleteIcon') ? (
         <Icon
           containerStyle={{ marginRight: 15, marginTop: 15 }}
           iconStyle={styles.headerIcon}
           type="font-awesome"
           name="trash"
-          onPress={navigation.getParam('deletePost')}
+          onPress={navigation.getParam('confirmDeleteIntent')}
         />
       ) : (
         <View />
@@ -40,10 +40,20 @@ class BlogPost extends React.Component {
     };
   };
 
-  allowDelete = () => {};
-
   componentDidMount = value => {
-    this.props.navigation.setParams({ deletePost: this.confirmDeleteIntent });
+    this.props.navigation.setParams({
+      renderDeleteIcon: this.renderDeleteIcon(),
+      confirmDeleteIntent: this.confirmDeleteIntent
+    });
+  };
+
+  renderDeleteIcon = () => {
+    const user = global.currUser || {};
+    const isAdmin = user.is_event_admin === 't';
+    const createdBy = this.props.navigation.state.params.post.created_by;
+    const createdThisEvent = createdBy === user.username;
+    const renderDeleteIcon = isAdmin || createdThisEvent;
+    return renderDeleteIcon;
   };
 
   confirmDeleteIntent = () => {
@@ -65,7 +75,7 @@ class BlogPost extends React.Component {
     const url = 'https://cuwomen.org/functions/app.gwln.php';
     const args = {
       post_id: this.props.navigation.state.params.post.post_id,
-      username: (global.currUser || {}).username
+      username: this.props.navigation.state.params.post.created_by
     };
     fetch(url, {
       method: 'POST',
@@ -89,7 +99,6 @@ class BlogPost extends React.Component {
   };
 
   render() {
-    console.log('post: ', this.props.navigation.state.params.post);
     return (
       <View style={styles.mainContainer}>
         <View style={styles.cardContainer}>
@@ -128,6 +137,10 @@ const styles = StyleSheet.create({
     fontSize: 17,
     color: '#002A55',
     paddingVertical: 10
+  },
+  headerIcon: {
+    color: '#002A55',
+    flex: 1
   },
   postContainer: {
     alignSelf: 'center',

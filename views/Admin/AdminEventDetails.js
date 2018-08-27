@@ -67,7 +67,7 @@ class AdminEventDetails extends React.Component {
       ),
       headerRight: (
         <Icon
-          containerStyle={{ marginRight: 15, marginTop: 10 }}
+          containerStyle={{ marginRight: 15, marginTop: 15 }}
           iconStyle={styles.headerIcon}
           type="font-awesome"
           name="trash"
@@ -156,7 +156,6 @@ class AdminEventDetails extends React.Component {
     this.getEventCheckins();
   }
   render() {
-    console.log('event', this.props.navigation.state.params.event);
     const {
       event_month,
       event_day,

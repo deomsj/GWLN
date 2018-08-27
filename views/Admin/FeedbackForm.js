@@ -124,7 +124,7 @@ class FeedbackForm extends React.Component {
         code: 'sendFeedback',
         arguments: {
           feedback: value.Summary,
-          username: global.currUser.username
+          username: (global.currUser || {}).username
         }
       })
     })

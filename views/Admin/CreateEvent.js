@@ -150,7 +150,7 @@ class CreateEvent extends React.Component {
           event_picture: null,
           pic_caption: null,
           link: null,
-          username: global.currUser.username,
+          username: (global.currUser || {}).username,
           location: value.location
         }
       })

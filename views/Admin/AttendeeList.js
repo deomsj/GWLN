@@ -39,7 +39,7 @@ class AttendeeList extends React.Component {
       ),
       headerRight: (
         <Icon
-          containerStyle={{ marginRight: 15, marginTop: 0 }}
+          containerStyle={{ marginRight: 15, marginTop: 15 }}
           color="#002A55"
           name="file-upload"
           onPress={navigation.getParam('Export')}

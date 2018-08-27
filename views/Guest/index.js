@@ -79,7 +79,6 @@ Guest.navigationOptions = ({ navigation }) => {
             color: '#002A55'
           }}
         >
-          {' '}
           Help Support Our Cause
         </Text>
       ),
