@@ -9,6 +9,7 @@ import {
 } from 'react-native';
 import { Icon } from 'react-native-elements';
 import { ListItem } from 'react-native-elements';
+import { url, token } from '../../config/api';
 
 class Blog extends React.Component {
   constructor(props) {
@@ -35,11 +36,10 @@ class Blog extends React.Component {
   };
 
   getBlogPosts = () => {
-    const url = 'https://cuwomen.org/functions/app.gwln.php';
     fetch(url, {
       method: 'POST',
       headers: {
-        'X-Token': 'hub46bubg75839jfjsbs8532hs09hurdfy47sbub'
+        'X-Token': token
       },
       body: JSON.stringify({
         code: 'getBlogPosts',

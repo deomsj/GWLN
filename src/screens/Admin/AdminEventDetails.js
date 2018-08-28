@@ -10,6 +10,7 @@ import {
 } from 'react-native';
 import { Button, Icon } from 'react-native-elements';
 import { ListItem } from 'react-native-elements';
+import { url, token } from '../../config/api';
 
 class AdminEventDetails extends React.Component {
   constructor(props) {
@@ -28,11 +29,10 @@ class AdminEventDetails extends React.Component {
   };
 
   DeleteEvent = () => {
-    const url = 'https://cuwomen.org/functions/app.gwln.php';
     fetch(url, {
       method: 'POST',
       headers: {
-        'X-Token': 'hub46bubg75839jfjsbs8532hs09hurdfy47sbub'
+        'X-Token': token
       },
       body: JSON.stringify({
         code: 'deleteEvent',
@@ -73,11 +73,10 @@ class AdminEventDetails extends React.Component {
     this.props.navigation.setParams({ discard: this.DiscardForm });
   };
   getEventCheckins = () => {
-    const url = 'https://cuwomen.org/functions/app.gwln.php';
     fetch(url, {
       method: 'POST',
       headers: {
-        'X-Token': 'hub46bubg75839jfjsbs8532hs09hurdfy47sbub'
+        'X-Token': token
       },
       body: JSON.stringify({
         code: 'getEventCheckins',

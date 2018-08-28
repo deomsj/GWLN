@@ -3,6 +3,7 @@ import { StyleSheet, View } from 'react-native';
 import { List, ListItem, Text } from 'react-native-elements';
 import { Calendar } from 'react-native-calendars';
 import moment from 'moment';
+import { url, token } from '../../config/api';
 
 const _format = 'YYYY-MM-DD';
 const _today = moment().format(_format);
@@ -24,11 +25,10 @@ class EventCalendar extends React.Component {
     if (this.props.navigation.getParam('haveCurrentEvents')) {
       return;
     }
-    const url = 'https://cuwomen.org/functions/app.gwln.php';
     fetch(url, {
       method: 'POST',
       headers: {
-        'X-Token': 'hub46bubg75839jfjsbs8532hs09hurdfy47sbub'
+        'X-Token': token
       },
       body: JSON.stringify({
         code: 'getAllEvents'

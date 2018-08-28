@@ -7,6 +7,7 @@ import {
   TouchableOpacity
 } from 'react-native';
 import { SearchBar, List, ListItem } from 'react-native-elements';
+import { url, token } from '../../config/api';
 
 const contains = ({ first_name, last_name }, query) =>
   first_name.includes(query) || last_name.includes(query);
@@ -99,12 +100,11 @@ class MemberList extends React.Component {
     this.makeRemoteRequest();
   }
   makeRemoteRequest = () => {
-    const url = 'https://cuwomen.org/functions/app.gwln.php';
     this.setState({ loading: true });
     fetch(url, {
       method: 'POST',
       headers: {
-        'X-Token': 'hub46bubg75839jfjsbs8532hs09hurdfy47sbub'
+        'X-Token': token
       },
       body: JSON.stringify({
         code: 'getMembersShares'

@@ -4,6 +4,7 @@
 
 - [File Structure](#file-structure)
 - [Development Workflow](#development-workflow)
+- [Services API](#services-api)
 - [Testing Workflow](#testing-workflow)
 - [Build for Distribution](#build-for-distribution)
 - [Project History](#project-history)
@@ -34,11 +35,26 @@
 
 1. migrate this repository to whatever version control system your team intents to use (or fork the repo on github)
 2. clone the project to your machine
-3. navigate to the root of the project that you cloned to your machine
-4. `npm run ios` - bundle project and serve locally to an iOs simulator
-5. `npm run android` - bundle project and serve locally to an android simulator
+3. create a new file: `./src/config/api.js` with the following exports:
 
-note: configuring android and ios simulators on your machine to display the result of your expo project will vary across different machines, b ut expo provides very helpful documentation on this: [https://docs.expo.io/versions/v29.0.0/workflow/debugging](https://docs.expo.io/versions/v29.0.0/workflow/debugging)
+```javascript
+export const url = '___url for services here____';
+export const token = '___X-Token string value here____';
+// this file is omitted from version control for security purposes
+// the string values to be added here should be provided by the services development team
+```
+
+4. navigate to the root of the project that you cloned to your machine
+5. `npm run ios` - bundle project and serve locally to an iOs simulator
+6. `npm run android` - bundle project and serve locally to an android simulator
+
+Note: configuring android and ios simulators on your machine to display the result of your expo project will vary across different machines, b ut expo provides very helpful documentation on this: [https://docs.expo.io/versions/v29.0.0/workflow/debugging](https://docs.expo.io/versions/v29.0.0/workflow/debugging)
+
+## Services Api
+
+The API uses SOAP methodology so there is only one endpoint. We call these API functions using fetch (https://facebook.github.io/react-native/docs/network).
+
+Creation and management of the API is through WOCCU. A high level look at the services available: https://www.cuwomen.org/functions/app.gwln.php?code=describe
 
 ## Testing Workflow
 

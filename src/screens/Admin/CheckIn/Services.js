@@ -1,10 +1,10 @@
-const url = 'https://cuwomen.org/functions/app.gwln.php';
+import { url, token } from '../../../config/api';
 
 export const fetchMemberInfo = username =>
   fetch(url, {
     method: 'POST',
     headers: {
-      'X-Token': 'hub46bubg75839jfjsbs8532hs09hurdfy47sbub'
+      'X-Token': token
     },
     body: JSON.stringify({
       code: 'getMemberInformationByUsername',
@@ -19,7 +19,7 @@ export const fetchEventCheckIn = (eventId, meminfo, like_to_be = false) =>
   fetch(url, {
     method: 'POST',
     headers: {
-      'X-Token': 'hub46bubg75839jfjsbs8532hs09hurdfy47sbub'
+      'X-Token': token
     },
     body: JSON.stringify({
       code: 'eventCheckin',

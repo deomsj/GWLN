@@ -7,6 +7,7 @@ import {
   TouchableOpacity
 } from 'react-native';
 import { ListItem } from 'react-native-elements';
+import { url, token } from '../../config/api';
 
 class MyUpcomingEvents extends React.Component {
   static navigationOptions = {
@@ -68,11 +69,10 @@ class MyUpcomingEvents extends React.Component {
   );
 
   makeRemoteRequest = () => {
-    const url = 'https://cuwomen.org/functions/app.gwln.php';
     fetch(url, {
       method: 'POST',
       headers: {
-        'X-Token': 'hub46bubg75839jfjsbs8532hs09hurdfy47sbub'
+        'X-Token': token
       },
       body: JSON.stringify({
         code: 'getCheckinEventsByEmail',
@@ -92,11 +92,10 @@ class MyUpcomingEvents extends React.Component {
   };
 
   GetMyEvents = () => {
-    const url = 'https://cuwomen.org/functions/app.gwln.php';
     fetch(url, {
       method: 'POST',
       headers: {
-        'X-Token': 'hub46bubg75839jfjsbs8532hs09hurdfy47sbub'
+        'X-Token': token
       },
       body: JSON.stringify({
         code: 'getAllEvents'

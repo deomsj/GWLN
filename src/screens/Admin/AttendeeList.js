@@ -8,6 +8,7 @@ import {
   Alert
 } from 'react-native';
 import { ListItem, Icon } from 'react-native-elements';
+import { url, token } from '../../config/api';
 
 class AttendeeList extends React.Component {
   constructor(props) {
@@ -56,11 +57,11 @@ class AttendeeList extends React.Component {
   };
 
   ExportAttendeeList = () => {
-    const url = 'https://cuwomen.org/functions/app.gwln.php';
+    const url = api;
     fetch(url, {
       method: 'POST',
       headers: {
-        'X-Token': 'hub46bubg75839jfjsbs8532hs09hurdfy47sbub'
+        'X-Token': token
       },
       body: JSON.stringify({
         code: 'sendRSVPList',
@@ -80,11 +81,10 @@ class AttendeeList extends React.Component {
   };
 
   retrieveEvent = () => {
-    const url = 'https://cuwomen.org/functions/app.gwln.php';
     fetch(url, {
       method: 'POST',
       headers: {
-        'X-Token': 'hub46bubg75839jfjsbs8532hs09hurdfy47sbub'
+        'X-Token': token
       },
       body: JSON.stringify({
         code: 'getEventCheckins',

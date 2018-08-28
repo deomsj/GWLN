@@ -13,6 +13,7 @@ import t from 'tcomb-form-native';
 import GWLNlogo from '../../assets/img/gwln_logo.jpg';
 import WorldCouncilLogo from '../../assets/img/WorldCouncil_logo.png';
 import loginCredentials from '../../config/loginCredentials';
+import { url, token } from '../../config/api';
 
 const Form = t.form.Form;
 // overriding the text color for every textbox in every form of your app
@@ -63,11 +64,10 @@ class SignIn extends React.Component {
   handleSubmit = () => {
     const value = this.form.current.getValue();
     if (value) {
-      const url = 'https://cuwomen.org/functions/app.gwln.php';
       fetch(url, {
         method: 'POST',
         headers: {
-          'X-Token': 'hub46bubg75839jfjsbs8532hs09hurdfy47sbub'
+          'X-Token': token
         },
         body: JSON.stringify({
           code: 'login',

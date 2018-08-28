@@ -9,6 +9,7 @@ import {
 } from 'react-native';
 import { Icon } from 'react-native-elements';
 import HTML from 'react-native-render-html';
+import { url, token } from '../../config/api';
 
 class BlogPost extends React.Component {
   static navigationOptions = ({ navigation }) => {
@@ -71,7 +72,6 @@ class BlogPost extends React.Component {
   };
 
   DeleteBlogPost = () => {
-    const url = 'https://cuwomen.org/functions/app.gwln.php';
     const args = {
       post_id: this.props.navigation.state.params.post.post_id,
       username: this.props.navigation.state.params.post.created_by
@@ -79,7 +79,7 @@ class BlogPost extends React.Component {
     fetch(url, {
       method: 'POST',
       headers: {
-        'X-Token': 'hub46bubg75839jfjsbs8532hs09hurdfy47sbub'
+        'X-Token': token
       },
       body: JSON.stringify({
         code: 'deleteBlogPost',

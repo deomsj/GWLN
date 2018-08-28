@@ -11,6 +11,7 @@ import {
 import { Button, Icon } from 'react-native-elements';
 import t from 'tcomb-form-native';
 import _ from 'lodash';
+import { url, token } from '../../config/api';
 
 const Form = t.form.Form;
 
@@ -112,11 +113,10 @@ class NewBlogPost extends React.Component {
   };
 
   submit = value => {
-    const url = 'https://cuwomen.org/functions/app.gwln.php';
     fetch(url, {
       method: 'POST',
       headers: {
-        'X-Token': 'hub46bubg75839jfjsbs8532hs09hurdfy47sbub'
+        'X-Token': token
       },
       body: JSON.stringify({
         code: 'insertBlogPost',

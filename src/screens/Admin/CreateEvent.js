@@ -10,6 +10,7 @@ import {
 import { Button, Icon } from 'react-native-elements';
 import moment from 'moment';
 import _ from 'lodash';
+import { url, token } from '../../config/api';
 
 import t from 'tcomb-form-native';
 
@@ -131,11 +132,10 @@ class CreateEvent extends React.Component {
     var _month = TmpDate[1];
     var _day = TmpDate[2];
 
-    const url = 'https://cuwomen.org/functions/app.gwln.php';
     fetch(url, {
       method: 'POST',
       headers: {
-        'X-Token': 'hub46bubg75839jfjsbs8532hs09hurdfy47sbub'
+        'X-Token': token
       },
       body: JSON.stringify({
         code: 'insertEvent',
